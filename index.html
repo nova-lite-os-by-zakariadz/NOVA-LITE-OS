@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to GUKU Lite OS</title>
+    <style>
+        :root {
+            --primary-color: #ffcc00;
+            --primary-hover: #ff9900;
+            --secondary-color: #ff6600;
+            --background-dark: rgba(0, 0, 0, 0.85);
+            --text-light: #ffffff;
+            --shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            min-height: 100vh;
+            background: url('/api/placeholder/1920/1080') no-repeat center center fixed;
+            background-size: cover;
+            color: var(--text-light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: -1;
+        }
+        
+        .container {
+            background: var(--background-dark);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            max-width: 600px;
+            width: 100%;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .container.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            text-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+        }
+        
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+        
+        .btn {
+            background: linear-gradient(90deg, var(--primary-color), var(--primary-hover));
+            color: #000000;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            margin: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+        }
+        
+        .btn:hover {
+            background: linear-gradient(90deg, var(--primary-hover), var(--secondary-color));
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(255, 204, 0, 0.7);
+        }
+        
+        .btn:active {
+            transform: scale(0.98);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .social-buttons {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            margin: 10px;
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        
+        .social-btn svg {
+            margin-right: 10px;
+            height: 20px;
+            width: 20px;
+        }
+        
+        .discord { 
+            background: #5865F2; 
+            color: white; 
+        }
+        
+        .discord:hover { 
+            background: #4854c7; 
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(88, 101, 242, 0.5);
+        }
+        
+        .instagram { 
+            background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D); 
+            color: white; 
+        }
+        
+        .instagram:hover { 
+            background: linear-gradient(45deg, #833AB4, #C13584, #E1306C, #FD1D1D, #405DE6, #5851DB); 
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(225, 48, 108, 0.5);
+        }
+        
+        .youtube { 
+            background: #FF0000; 
+            color: white; 
+        }
+        
+        .youtube:hover { 
+            background: #cc0000; 
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.5);
+        }
+        
+        .verification {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 25px auto;
+            max-width: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .checkbox-wrapper {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .checkbox-wrapper input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+        
+        .checkmark {
+            height: 25px;
+            width: 25px;
+            background-color: #555;
+            border-radius: 4px;
+            margin-right: 10px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .checkbox-wrapper:hover input ~ .checkmark {
+            background-color: #777;
+        }
+        
+        .checkbox-wrapper input:checked ~ .checkmark {
+            background-color: var(--primary-color);
+        }
+        
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+        
+        .checkbox-wrapper input:checked ~ .checkmark:after {
+            display: block;
+        }
+        
+        .checkbox-wrapper .checkmark:after {
+            left: 9px;
+            top: 5px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            transform: rotate(45deg);
+        }
+        
+        .features-list {
+            text-align: left;
+            list-style-position: inside;
+            margin: 20px 0 30px;
+            padding: 0 10px;
+        }
+        
+        .features-list li {
+            margin: 12px 0;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .features-list li::before {
+            content: "🔹";
+            margin-right: 10px;
+        }
+        
+        .section-transition {
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        
+        .fade-out {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .logo {
+            max-width: 120px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 10px rgba(255, 204, 0, 0.5));
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .social-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .social-btn {
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="welcomeSection" class="container active">
+        <img src="https://yt3.googleusercontent.com/KntU2KcRN2NANrHVoUIQeOBNUfYCSi4g_hsHZr34r_hs0LK-r9g-lQjSwIokhMjmrKQJH_uCHA=s160-c-k-c0x00ffffff-no-rj" alt="GUKU OS Logo" class="logo">
+        <h1>Welcome to GUKU Lite OS</h1>
+        <p>Experience the ultimate optimized operating system designed for speed and performance</p>
+        <button class="btn" onclick="showSection('downloadSection')">Get Started</button>
+    </div>
+    
+    <div id="downloadSection" class="container hidden">
+        <img src="https://yt3.googleusercontent.com/KntU2KcRN2NANrHVoUIQeOBNUfYCSi4g_hsHZr34r_hs0LK-r9g-lQjSwIokhMjmrKQJH_uCHA=s160-c-k-c0x00ffffff-no-rj" alt="GUKU OS Logo" class="logo">
+        <h1>Download GUKU Lite OS</h1>
+        <p>Ready to experience lightning-fast performance? Download GUKU Lite OS now and transform your computing experience.</p>
+        
+        <div class="verification">
+            <label class="checkbox-wrapper">
+                <input type="checkbox" id="botCheck">
+                <span class="checkmark"></span>
+                I AM NOT A BOT
+            </label>
+        </div>
+        
+        <button class="btn" onclick="downloadGukuLite()">Download Now</button>
+        <button class="btn" style="background: linear-gradient(90deg, #333, #555); color: white;" onclick="showSection('featuresSection')">View Features</button>
+        
+        <div class="social-buttons">
+            <a href="https://discord.com" target="_blank" class="social-btn discord">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+                    <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3847-.4058-.874-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286z"/>
+                </svg>
+                Join Discord
+            </a>
+            <a href="https://instagram.com" target="_blank" class="social-btn instagram">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+                Follow on Instagram
+            </a>
+            <a href="https://www.youtube.com/@ZAKARIA0_FF" target="_blank" class="social-btn youtube">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
+                Watch on YouTube
+            </a>
+        </div>
+    </div>
+    
+    <div id="featuresSection" class="container hidden">
+        <img src="https://yt3.googleusercontent.com/KntU2KcRN2NANrHVoUIQeOBNUfYCSi4g_hsHZr34r_hs0LK-r9g-lQjSwIokhMjmrKQJH_uCHA=s160-c-k-c0x00ffffff-no-rj" alt="GUKU OS Logo" class="logo">
+        <h1>GUKU Lite OS Features</h1>
+        <p>Experience a revolutionary operating system optimized for performance and efficiency.</p>
+        
+        <ul class="features-list">
+            <li>Lightning-fast boot times (50% faster than standard OS)</li>
+            <li>Reduced bloatware for cleaner system operation</li>
+            <li>Optimized memory usage (up to 30% reduction)</li>
+            <li>Enhanced system tweaks for maximum performance</li>
+            <li>Unnecessary services and processes removed</li>
+            <li>Improved gaming performance with lower latency</li>
+            <li>Streamlined user interface for better experience</li>
+            <li>Advanced privacy controls and security features</li>
+        </ul>
+        
+        <button class="btn" onclick="showSection('downloadSection')">Back to Download</button>
+    </div>
+    
+    <script>
+        // Show initial section with animation on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                document.getElementById('welcomeSection').classList.add('active');
+            }, 100);
+        });
+        
+        // Function to show a specific section with smooth transition
+        function showSection(sectionId) {
+            // Get all sections
+            const sections = document.querySelectorAll('.container');
+            
+            // Hide all sections with fade effect
+            sections.forEach(section => {
+                section.classList.add('section-transition');
+                section.classList.add('fade-out');
+                setTimeout(() => {
+                    section.classList.add('hidden');
+                }, 500);
+            });
+            
+            // Show the requested section with fade-in effect
+            setTimeout(() => {
+                const targetSection = document.getElementById(sectionId);
+                targetSection.classList.remove('hidden');
+                
+                setTimeout(() => {
+                    targetSection.classList.remove('fade-out');
+                    targetSection.classList.add('fade-in');
+                }, 50);
+            }, 600);
+        }
+        
+        // Function to handle download
+        function downloadGukuLite() {
+            if (document.getElementById('botCheck').checked) {
+                // Simulate download start
+                alert("Thank you for downloading GUKU Lite OS! Your download will begin shortly.");
+                
+                // Redirect to download page (placeholder)
+                setTimeout(() => {
+                    window.location.href = "https://example.com/GUKU_Lite_OS.iso";
+                }, 1000);
+            } else {
+                // Shake the verification box to highlight it needs checking
+                const verificationBox = document.querySelector('.verification');
+                verificationBox.style.animation = 'shake 0.5s';
+                setTimeout(() => {
+                    verificationBox.style.animation = '';
+                }, 500);
+                
+                alert("Please verify you are not a bot before downloading!");
+            }
+        }
+        
+        // Add shake animation to stylesheet
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+                20%, 40%, 60%, 80% { transform: translateX(5px); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
