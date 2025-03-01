@@ -267,6 +267,145 @@
             filter: drop-shadow(0 0 10px rgba(255, 204, 0, 0.5));
         }
         
+        /* كود إضافي للإشعارات المخصصة */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            color: #fff;
+            font-weight: bold;
+            max-width: 350px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            z-index: 1000;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .notification.success {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            border-left: 5px solid #1e7e34;
+        }
+        
+        .notification.error {
+            background: linear-gradient(45deg, #dc3545, #e74c3c);
+            border-left: 5px solid #bd2130;
+        }
+        
+        .notification.info {
+            background: linear-gradient(45deg, #17a2b8, #00b8d8);
+            border-left: 5px solid #138496;
+        }
+        
+        .notification.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .notification-icon {
+            margin-right: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .notification-close {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1.1rem;
+            cursor: pointer;
+            opacity: 0.8;
+            padding: 0 5px;
+            margin-left: 10px;
+        }
+        
+        .notification-close:hover {
+            opacity: 1;
+        }
+        
+        .notification-progress {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .notification-progress-bar {
+            height: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            width: 100%;
+            transition: width linear;
+        }
+        
+        /* قسم تنزيل الملف */
+        .download-progress {
+            background: rgba(0, 0, 0, 0.4);
+            height: 8px;
+            border-radius: 4px;
+            margin: 20px auto;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+        }
+        
+        .download-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            width: 0%;
+            transition: width 0.3s linear;
+            border-radius: 4px;
+        }
+        
+        .download-status {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+        
+        .download-panel {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .download-panel.active {
+            display: block;
+        }
+        
+        .download-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .pulse-animation {
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+        
         @media (max-width: 768px) {
             .container {
                 padding: 30px 20px;
@@ -283,6 +422,12 @@
             
             .social-btn {
                 width: 80%;
+            }
+            
+            .notification {
+                max-width: 90%;
+                left: 5%;
+                right: 5%;
             }
         }
     </style>
@@ -310,6 +455,19 @@
         
         <button class="btn" onclick="downloadGukuLite()">Download Now</button>
         <button class="btn" style="background: linear-gradient(90deg, #333, #555); color: white;" onclick="showSection('featuresSection')">View Features</button>
+        
+        <!-- قسم التنزيل الديناميكي -->
+        <div id="downloadPanel" class="download-panel">
+            <h3>Downloading GUKU Lite OS</h3>
+            <div class="download-info">
+                <span id="downloadText">Initializing download...</span>
+                <span id="downloadPercent">0%</span>
+            </div>
+            <div class="download-progress">
+                <div id="downloadBar" class="download-bar"></div>
+            </div>
+            <div class="download-status" id="downloadStatus">Preparing files...</div>
+        </div>
         
         <div class="social-buttons">
             <a href="https://discord.com" target="_blank" class="social-btn discord">
@@ -352,6 +510,9 @@
         <button class="btn" onclick="showSection('downloadSection')">Back to Download</button>
     </div>
     
+    <!-- Container for notifications -->
+    <div id="notificationContainer"></div>
+    
     <script>
         // Show initial section with animation on page load
         document.addEventListener('DOMContentLoaded', function() {
@@ -386,16 +547,107 @@
             }, 600);
         }
         
+        // Function to create custom notification
+        function showNotification(message, type = 'info', duration = 5000) {
+            const notifContainer = document.getElementById('notificationContainer');
+            
+            // Create notification elements
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            
+            // Icon based on notification type
+            let icon = '💬';
+            if (type === 'success') icon = '✅';
+            if (type === 'error') icon = '❌';
+            if (type === 'info') icon = 'ℹ️';
+            
+            // Content for notification
+            notification.innerHTML = `
+                <span class="notification-icon">${icon}</span>
+                <span class="notification-message">${message}</span>
+                <button class="notification-close" onclick="this.parentElement.remove()">×</button>
+                <div class="notification-progress">
+                    <div class="notification-progress-bar"></div>
+                </div>
+            `;
+            
+            // Add to container
+            notifContainer.appendChild(notification);
+            
+            // Show with animation
+            setTimeout(() => {
+                notification.classList.add('show');
+                
+                // Animate progress bar
+                const progressBar = notification.querySelector('.notification-progress-bar');
+                progressBar.style.transition = `width ${duration}ms linear`;
+                
+                setTimeout(() => {
+                    progressBar.style.width = '0%';
+                }, 50);
+            }, 10);
+            
+            // Auto remove after duration
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    notification.remove();
+                }, 500);
+            }, duration);
+        }
+        
         // Function to handle download
         function downloadGukuLite() {
             if (document.getElementById('botCheck').checked) {
-                // Simulate download start
-                alert("Thank you for downloading GUKU Lite OS! Your download will begin shortly.");
+                // Show download panel
+                const downloadPanel = document.getElementById('downloadPanel');
+                downloadPanel.classList.add('active');
                 
-                // Redirect to download page (placeholder)
-                setTimeout(() => {
-                    window.location.href = "https://example.com/GUKU_Lite_OS.iso";
-                }, 1000);
+                // Show notification
+                showNotification('Your download is starting...', 'success');
+                
+                // Simulate download progress
+                let progress = 0;
+                const downloadBar = document.getElementById('downloadBar');
+                const downloadPercent = document.getElementById('downloadPercent');
+                const downloadText = document.getElementById('downloadText');
+                const downloadStatus = document.getElementById('downloadStatus');
+                
+                const progressInterval = setInterval(() => {
+                    progress += Math.random() * 5;
+                    
+                    if (progress >= 100) {
+                        progress = 100;
+                        clearInterval(progressInterval);
+                        
+                        downloadBar.style.width = '100%';
+                        downloadPercent.innerText = '100%';
+                        downloadText.innerText = 'Download Complete!';
+                        downloadStatus.innerText = 'Your file is ready. Installation will begin automatically.';
+                        
+                        // Show success notification
+                        showNotification('Download complete! Starting installation...', 'success');
+                        
+                        // Redirect after a delay
+                        setTimeout(() => {
+                            window.location.href = "https://example.com/GUKU_Lite_OS.iso";
+                        }, 3000);
+                    } else {
+                        downloadBar.style.width = `${progress}%`;
+                        downloadPercent.innerText = `${Math.floor(progress)}%`;
+                        
+                        // Update status messages at different stages
+                        if (progress < 20) {
+                            downloadStatus.innerText = 'Preparing files...';
+                        } else if (progress < 50) {
+                            downloadStatus.innerText = 'Downloading system files...';
+                        } else if (progress < 80) {
+                            downloadStatus.innerText = 'Downloading performance enhancements...';
+                        } else {
+                            downloadStatus.innerText = 'Finalizing download...';
+                        }
+                    }
+                }, 200);
             } else {
                 // Shake the verification box to highlight it needs checking
                 const verificationBox = document.querySelector('.verification');
@@ -404,20 +656,10 @@
                     verificationBox.style.animation = '';
                 }, 500);
                 
-                alert("Please verify you are not a bot before downloading!");
+                // Show error notification instead of alert
+                showNotification('Please verify you are not a bot before downloading!', 'error');
             }
         }
-        
-        // Add shake animation to stylesheet
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes shake {
-                0%, 100% { transform: translateX(0); }
-                10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-                20%, 40%, 60%, 80% { transform: translateX(5px); }
-            }
-        `;
-        document.head.appendChild(style);
     </script>
 </body>
 </html>
