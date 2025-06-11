@@ -1,506 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang=en>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Download GUKU Lite OS - The ultimate optimized operating system for maximum performance and speed">
-    <title>GUKU Lite OS - Performance Optimized Operating System</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary-color: #ffcc00;
-            --primary-hover: #ff9900;
-            --secondary-color: #ff6600;
-            --background-dark: rgba(0, 0, 0, 0.85);
-            --text-light: #ffffff;
-            --shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
-            --transition-standard: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            text-align: center;
-            min-height: 100vh;
-            background: url('https://github.com/ZAKIWEBOS/GUKU-Lite-OS/blob/main/sonu-goku-protector-qp.jpg?raw=true') no-repeat center center fixed;
-            background-size: cover;
-            color: var(--text-light);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            position: relative;
-            overflow-x: hidden;
-        }
-        
-        body::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8));
-            z-index: -1;
-        }
-        
-        .container {
-            background: var(--background-dark);
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-            max-width: 650px;
-            width: 100%;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .container.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: var(--primary-color);
-            text-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
-            font-weight: 700;
-            letter-spacing: -1px;
-        }
-        
-        p {
-            font-size: 1.2rem;
-            margin-bottom: 25px;
-            line-height: 1.6;
-            color: rgba(255, 255, 255, 0.9);
-            font-weight: 300;
-        }
-        
-        .btn {
-            background: linear-gradient(90deg, var(--primary-color), var(--primary-hover));
-            color: #000000;
-            border: none;
-            padding: 15px 30px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            border-radius: 8px;
-            transition: var(--transition-standard);
-            font-weight: 600;
-            margin: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            display: inline-block;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .btn::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: 0.5s;
-        }
-        
-        .btn:hover::before {
-            left: 100%;
-        }
-        
-        .btn:hover {
-            background: linear-gradient(90deg, var(--primary-hover), var(--secondary-color));
-            transform: scale(1.05);
-            box-shadow: 0 0 15px rgba(255, 204, 0, 0.7);
-        }
-        
-        .btn:active {
-            transform: scale(0.98);
-        }
-        
-        .hidden {
-            display: none;
-        }
-        
-        .social-buttons {
-            margin-top: 30px;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-        
-        .social-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 12px 20px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: var(--transition-standard);
-            font-size: 1rem;
-            min-width: 180px;
-        }
-        
-        .social-btn svg {
-            margin-right: 10px;
-            height: 20px;
-            width: 20px;
-        }
-        
-        .discord { 
-            background: #5865F2; 
-            color: white; 
-        }
-        
-        .discord:hover { 
-            background: #4854c7; 
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(88, 101, 242, 0.5);
-        }
-        
-        .instagram { 
-            background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D); 
-            color: white; 
-        }
-        
-        .instagram:hover { 
-            background: linear-gradient(45deg, #833AB4, #C13584, #E1306C, #FD1D1D, #405DE6, #5851DB); 
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(225, 48, 108, 0.5);
-        }
-        
-        .youtube { 
-            background: #FF0000; 
-            color: white; 
-        }
-        
-        .youtube:hover { 
-            background: #cc0000; 
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.5);
-        }
-        
-        .verification {
-            background: rgba(0, 0, 0, 0.6);
-            padding: 20px;
-            border-radius: 8px;
-            margin: 25px auto;
-            max-width: 300px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: var(--transition-standard);
-        }
-        
-        .verification:hover {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 15px rgba(255, 204, 0, 0.3);
-        }
-        
-        .checkbox-wrapper {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-        }
-        
-        .checkbox-wrapper input {
-            position: absolute;
-            opacity: 0;
-            cursor: pointer;
-            height: 0;
-            width: 0;
-        }
-        
-        .checkmark {
-            height: 25px;
-            width: 25px;
-            background-color: #555;
-            border-radius: 4px;
-            margin-right: 10px;
-            position: relative;
-            transition: var(--transition-standard);
-        }
-        
-        .checkbox-wrapper:hover input ~ .checkmark {
-            background-color: #777;
-        }
-        
-        .checkbox-wrapper input:checked ~ .checkmark {
-            background-color: var(--primary-color);
-        }
-        
-        .checkmark:after {
-            content: "";
-            position: absolute;
-            display: none;
-            left: 9px;
-            top: 5px;
-            width: 5px;
-            height: 10px;
-            border: solid white;
-            border-width: 0 3px 3px 0;
-            transform: rotate(45deg);
-            transition: var(--transition-standard);
-        }
-        
-        .checkbox-wrapper input:checked ~ .checkmark:after {
-            display: block;
-        }
-        
-        .features-list {
-            text-align: left;
-            list-style-position: inside;
-            margin: 20px 0 30px;
-            padding: 0 10px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px 30px;
-        }
-        
-        .features-list li {
-            margin: 8px 0;
-            font-size: 1.1rem;
-            display: flex;
-            align-items: center;
-        }
-        
-        .features-list li::before {
-            content: "✦";
-            margin-right: 10px;
-            color: var(--primary-color);
-            font-size: 1.2rem;
-        }
-        
-        .section-transition {
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-        
-        .fade-out {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        
-        .fade-in {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .logo {
-            max-width: 120px;
-            margin-bottom: 20px;
-            filter: drop-shadow(0 0 10px rgba(255, 204, 0, 0.5));
-            border-radius: 50%;
-            border: 2px solid var(--primary-color);
-            transition: var(--transition-standard);
-        }
-        
-        .logo:hover {
-            transform: rotate(5deg) scale(1.05);
-        }
-        
-        /* Notification Styles */
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 20px;
-            border-radius: 10px;
-            color: #fff;
-            font-weight: bold;
-            max-width: 350px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            opacity: 0;
-            transform: translateY(-20px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-            z-index: 1000;
-            text-align: left;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            backdrop-filter: blur(10px);
-        }
-        
-        .notification.success {
-            background: linear-gradient(45deg, rgba(40, 167, 69, 0.9), rgba(32, 201, 151, 0.9));
-            border-left: 5px solid #1e7e34;
-        }
-        
-        .notification.error {
-            background: linear-gradient(45deg, rgba(220, 53, 69, 0.9), rgba(231, 76, 60, 0.9));
-            border-left: 5px solid #bd2130;
-        }
-        
-        .notification.info {
-            background: linear-gradient(45deg, rgba(23, 162, 184, 0.9), rgba(0, 184, 216, 0.9));
-            border-left: 5px solid #138496;
-        }
-        
-        .notification.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .notification-icon {
-            margin-right: 15px;
-            font-size: 1.5rem;
-        }
-        
-        .notification-close {
-            background: transparent;
-            border: none;
-            color: white;
-            font-size: 1.1rem;
-            cursor: pointer;
-            opacity: 0.8;
-            padding: 0 5px;
-            margin-left: 10px;
-            transition: var(--transition-standard);
-        }
-        
-        .notification-close:hover {
-            opacity: 1;
-            transform: scale(1.1);
-        }
-        
-        .notification-progress {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            height: 3px;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.3);
-        }
-        
-        .notification-progress-bar {
-            height: 100%;
-            background: rgba(255, 255, 255, 0.8);
-            width: 100%;
-            transition: width linear;
-        }
-        
-        /* Download Progress Styles */
-        .download-progress {
-            background: rgba(0, 0, 0, 0.4);
-            height: 8px;
-            border-radius: 10px;
-            margin: 20px auto;
-            position: relative;
-            overflow: hidden;
-            width: 100%;
-        }
-        
-        .download-bar {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-            width: 0%;
-            transition: width 0.3s linear;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
-        }
-        
-        .download-status {
-            margin-top: 10px;
-            font-size: 0.9rem;
-            color: #ccc;
-        }
-        
-        .download-panel {
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 10px;
-            padding: 20px;
-            margin-top: 20px;
-            display: none;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(5px);
-            transition: var(--transition-standard);
-        }
-        
-        .download-panel.active {
-            display: block;
-            animation: fadeIn 0.5s forwards;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .download-info {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-        }
-        
-        .pulse-animation {
-            animation: pulse 1.5s infinite;
-        }
-        
-        .system-requirements {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 10px;
-            padding: 20px;
-            margin-top: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .requirements-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            text-align: left;
-            margin-top: 15px;
-        }
-        
-        .requirement-item {
-            display: flex;
-            align-items: center;
-        }
-        
-        .requirement-item span:first-child {
-            font-weight: 600;
-            margin-right: 8px;
-            color: var(--primary-color);
-            min-width: 100px;
-        }
-        
-        .review-stars {
-            display: flex;
-            justify-content: center;
-            margin: 15px 0;
-            font-size: 1.5rem;
-            color: var(--primary-color);
-        }
-        
-        .testimonial {
-            font-style: italic;
-            background: rgba(0, 0, 0, 0.3);
-            padding: 15px;
-            border-radius: 10px;
-            margin: 20px 0;
-            position: relative;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        
-        .testimonial::before {
-            content: """;
+<meta charset=UTF-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="Download NOVA Lite OS BY ZAKARIA0_DZ - The ultimate optimized operating system for maximum performance and speed">
+<title>NOVA Lite OS - Performance Optimized Operating System</title>
+<link rel=preconnect href=https://fonts.googleapis.com>
+<link rel=preconnect href=https://fonts.gstatic.com crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel=stylesheet>
+<style>:root{--primary-color:#ffcc00;--primary-hover:#ff9900;--secondary-color:#ff6600;--background-dark:rgba(0, 0, 0, 0.85);--text-light:#ffffff;--shadow:0px 0px 20px rgba(255, 255, 255, 0.3);--transition-standard:all 0.3s cubic-bezier(0.4, 0, 0.2, 1)}*{margin:0;padding:0;box-sizing:border-box}body{font-family:Poppins,'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;text-align:center;min-height:100vh;background:url('https://github.com/ZAKIWEBOS/GUKU-Lite-OS/blob/main/Logo.png?raw=true') no-repeat center center fixed;background-size:cover;color:var(--text-light);display:flex;justify-content:center;align-items:center;padding:20px;position:relative;overflow-x:hidden}body::before{content:"";position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.8));z-index:-1}.container{background:var(--background-dark);padding:40px;border-radius:15px;box-shadow:var(--shadow);max-width:650px;width:100%;opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s ease;backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.1)}.container.active{opacity:1;transform:translateY(0)}h1{font-size:2.5rem;margin-bottom:20px;color:var(--primary-color);text-shadow:0 0 10px rgba(255,204,0,.5);font-weight:700;letter-spacing:-1px}p{font-size:1.2rem;margin-bottom:25px;line-height:1.6;color:rgba(255,255,255,.9);font-weight:300}.btn{background:linear-gradient(90deg,var(--primary-color),var(--primary-hover));color:#000;border:none;padding:15px 30px;font-size:1.1rem;cursor:pointer;border-radius:8px;transition:var(--transition-standard);font-weight:600;margin:10px;text-transform:uppercase;letter-spacing:1px;display:inline-block;position:relative;overflow:hidden}.btn::before{content:"";position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);transition:.5s}.btn:hover::before{left:100%}.btn:hover{background:linear-gradient(90deg,var(--primary-hover),var(--secondary-color));transform:scale(1.05);box-shadow:0 0 15px rgba(255,204,0,.7)}.btn:active{transform:scale(.98)}.hidden{display:none}.social-buttons{margin-top:30px;display:flex;justify-content:center;flex-wrap:wrap;gap:15px}.social-btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 20px;border-radius:8px;text-decoration:none;font-weight:600;transition:var(--transition-standard);font-size:1rem;min-width:180px}.social-btn svg{margin-right:10px;height:20px;width:20px}.discord{background:#5865f2;color:#fff}.discord:hover{background:#4854c7;transform:translateY(-3px);box-shadow:0 5px 15px rgba(88,101,242,.5)}.instagram{background:linear-gradient(45deg,#405de6,#5851db,#833ab4,#c13584,#e1306c,#fd1d1d);color:#fff}.instagram:hover{background:linear-gradient(45deg,#833ab4,#c13584,#e1306c,#fd1d1d,#405de6,#5851db);transform:translateY(-3px);box-shadow:0 5px 15px rgba(225,48,108,.5)}.youtube{background:red;color:#fff}.youtube:hover{background:#c00;transform:translateY(-3px);box-shadow:0 5px 15px rgba(255,0,0,.5)}.verification{background:rgba(0,0,0,.6);padding:20px;border-radius:8px;margin:25px auto;max-width:300px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.1);transition:var(--transition-standard)}.verification:hover{border-color:var(--primary-color);box-shadow:0 0 15px rgba(255,204,0,.3)}.checkbox-wrapper{display:flex;align-items:center;cursor:pointer}.checkbox-wrapper input{position:absolute;opacity:0;cursor:pointer;height:0;width:0}.checkmark{height:25px;width:25px;background-color:#555;border-radius:4px;margin-right:10px;position:relative;transition:var(--transition-standard)}.checkbox-wrapper:hover input~.checkmark{background-color:#777}.checkbox-wrapper input:checked~.checkmark{background-color:var(--primary-color)}.checkmark:after{content:"";position:absolute;display:none;left:9px;top:5px;width:5px;height:10px;border:solid #fff;border-width:0 3px 3px 0;transform:rotate(45deg);transition:var(--transition-standard)}.checkbox-wrapper input:checked~.checkmark:after{display:block}.features-list{text-align:left;list-style-position:inside;margin:20px 0 30px;padding:0 10px;display:grid;grid-template-columns:1fr 1fr;gap:12px 30px}.features-list li{margin:8px 0;font-size:1.1rem;display:flex;align-items:center}.features-list li::before{content:"✦";margin-right:10px;color:var(--primary-color);font-size:1.2rem}.section-transition{transition:opacity .5s ease,transform .5s ease}.fade-out{opacity:0;transform:translateY(20px)}.fade-in{opacity:1;transform:translateY(0)}.logo{max-width:120px;margin-bottom:20px;filter:drop-shadow(0 0 10px rgba(255, 204, 0, .5));border-radius:50%;border:2px solid var(--primary-color);transition:var(--transition-standard)}.logo:hover{transform:rotate(5deg) scale(1.05)}.notification{position:fixed;top:20px;right:20px;padding:20px;border-radius:10px;color:#fff;font-weight:700;max-width:350px;box-shadow:0 5px 15px rgba(0,0,0,.3);opacity:0;transform:translateY(-20px);transition:opacity .5s ease,transform .5s ease;z-index:1000;text-align:left;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(10px)}.notification.success{background:linear-gradient(45deg,rgba(40,167,69,.9),rgba(32,201,151,.9));border-left:5px solid #1e7e34}.notification.error{background:linear-gradient(45deg,rgba(220,53,69,.9),rgba(231,76,60,.9));border-left:5px solid #bd2130}.notification.info{background:linear-gradient(45deg,rgba(23,162,184,.9),rgba(0,184,216,.9));border-left:5px solid #138496}.notification.show{opacity:1;transform:translateY(0)}.notification-icon{margin-right:15px;font-size:1.5rem}.notification-close{background:0 0;border:none;color:#fff;font-size:1.1rem;cursor:pointer;opacity:.8;padding:0 5px;margin-left:10px;transition:var(--transition-standard)}.notification-close:hover{opacity:1;transform:scale(1.1)}.notification-progress{position:absolute;bottom:0;left:0;height:3px;width:100%;background:rgba(255,255,255,.3)}.notification-progress-bar{height:100%;background:rgba(255,255,255,.8);width:100%;transition:width linear}.download-progress{background:rgba(0,0,0,.4);height:8px;border-radius:10px;margin:20px auto;position:relative;overflow:hidden;width:100%}.download-bar{position:absolute;top:0;left:0;height:100%;background:linear-gradient(90deg,var(--primary-color),var(--secondary-color));width:0%;transition:width .3s linear;border-radius:10px;box-shadow:0 0 10px rgba(255,204,0,.5)}.download-status{margin-top:10px;font-size:.9rem;color:#ccc}.download-panel{background:rgba(0,0,0,.5);border-radius:10px;padding:20px;margin-top:20px;display:none;border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(5px);transition:var(--transition-standard)}.download-panel.active{display:block;animation:fadeIn .5s forwards}@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}.download-info{display:flex;justify-content:space-between;margin-bottom:10px}.pulse-animation{animation:pulse 1.5s infinite}.system-requirements{background:rgba(0,0,0,.3);border-radius:10px;padding:20px;margin-top:30px;border:1px solid rgba(255,255,255,.1)}.requirements-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px;text-align:left;margin-top:15px}.requirement-item{display:flex;align-items:center}.requirement-item span:first-child{font-weight:600;margin-right:8px;color:var(--primary-color);min-width:100px}.review-stars{display:flex;justify-content:center;margin:15px 0;font-size:1.5rem;color:var(--primary-color)}.testimonial{font-style:italic;background:rgba(0,0,0,.3);padding:15px;border-radius:10px;margin:20px 0;position:relative;border:1px solid rgba(255,255,255,.05)}.testimonial::before{content:""";
             font-size: 4rem;
             position: absolute;
             top: -20px;
@@ -704,345 +212,211 @@
             
             .reviews-container {
                 grid-template-columns: 1fr;
-            }
-        }
-    </style>
+            }}</style>
 </head>
 <body>
-    <div id="welcomeSection" class="container active">
-        <img src="https://yt3.googleusercontent.com/KntU2KcRN2NANrHVoUIQeOBNUfYCSi4g_hsHZr34r_hs0LK-r9g-lQjSwIokhMjmrKQJH_uCHA=s160-c-k-c0x00ffffff-no-rj" alt="GUKU OS Logo" class="logo">
-        <span class="version-badge">Version 2.5</span>
-        <h1>Welcome to GUKU Lite OS</h1>
-        <p>Experience the ultimate optimized operating system designed for speed, performance, and an enhanced gaming experience</p>
-        
-        <div class="rating-summary">
-            <div class="rating-big">4.9</div>
-            <div class="rating-details">
-                <div class="rating-bar">
-                    <span class="rating-label">5★</span>
-                    <div class="rating-progress">
-                        <div class="rating-fill" style="width: 90%;"></div>
-                    </div>
-                    <span class="rating-count">1,965</span>
-                </div>
-                <div class="rating-bar">
-                    <span class="rating-label">4★</span>
-                    <div class="rating-progress">
-                        <div class="rating-fill" style="width: 8%;"></div>
-                    </div>
-                    <span class="rating-count">178</span>
-                </div>
-                <div class="rating-bar">
-                    <span class="rating-label">3★</span>
-                    <div class="rating-progress">
-                        <div class="rating-fill" style="width: 1%;"></div>
-                    </div>
-                    <span class="rating-count">28</span>
-                </div>
-                <div class="rating-bar">
-                    <span class="rating-label">2★</span>
-                    <div class="rating-progress">
-                        <div class="rating-fill" style="width: 0.5%;"></div>
-                    </div>
-                    <span class="rating-count">11</span>
-                </div>
-                <div class="rating-bar">
-                    <span class="rating-label">1★</span>
-                    <div class="rating-progress">
-                        <div class="rating-fill" style="width: 0.1%;"></div>
-                    </div>
-                    <span class="rating-count">3</span>
-                </div>
-            </div>
-            <div style="text-align: center; font-size: 0.9rem; color: #ccc;">
-                <div>Total Reviews</div>
-                <div style="font-size: 1.2rem; font-weight: 600; color: white;">2,185</div>
-            </div>
-        </div>
-        
-        <div class="review-stars">
-            ★★★★★ <span style="font-size: 0.9rem; margin-left: 5px; color: #aaa;">(4.9/5 from 2,185 users)</span>
-        </div>
-        
-        <button class="btn" onclick="showSection('downloadSection')">Get Started</button>
-    </div>
-    
-    <div id="downloadSection" class="container hidden">
-        <img src="https://yt3.googleusercontent.com/KntU2KcRN2NANrHVoUIQeOBNUfYCSi4g_hsHZr34r_hs0LK-r9g-lQjSwIokhMjmrKQJH_uCHA=s160-c-k-c0x00ffffff-no-rj" alt="GUKU OS Logo" class="logo">
-        <span class="version-badge">Version 2.5</span>
-        <h1>Download GUKU Lite OS</h1>
-        <p>Ready to experience lightning-fast performance? Download GUKU Lite OS now and transform your computing experience.</p>
-        
-        <div class="reviews-container">
-            <div class="review-card">
-                <div class="review-header">
-                    <div class="reviewer-avatar">AM</div>
-                    <div class="reviewer-info">
-                        <div class="reviewer-name">Alex M.</div>
-                        <div class="review-date">Pro Gamer - 2 weeks ago</div>
-                        <div class="review-stars-small">★★★★★</div>
-                    </div>
-                </div>
-                <div class="review-content">
-                    GUKU Lite OS has completely transformed my gaming experience. My FPS increased by 30% and system latency dropped significantly. Best OS modification I've ever used!
-                </div>
-            </div>
-            <div class="review-card">
-                <div class="review-header">
-                    <div class="reviewer-avatar">JS</div>
-                    <div class="reviewer-info">
-                        <div class="reviewer-name">Jake S.</div>
-                        <div class="review-date">Content Creator - 5 days ago</div>
-                        <div class="review-stars-small">★★★★★</div>
-                    </div>
-                </div>
-                <div class="review-content">
-                    After installing GUKU Lite OS, my video rendering times dropped by almost 40%. The system feels incredibly responsive and clean. Highly recommend!
-                </div>
-            </div>
-        </div>
-        
-        <div class="verification">
-            <label class="checkbox-wrapper">
-                <input type="checkbox" id="botCheck">
-                <span class="checkmark"></span>
-                I AM NOT A BOT
-            </label>
-        </div>
-        
-        <button class="btn" onclick="downloadGukuLite()">Download Now</button>
-        <button class="btn" style="background: linear-gradient(90deg, #333, #555); color: white;" onclick="showSection('featuresSection')">View Features</button>
-        
-        <!-- Download Panel -->
-        <div id="downloadPanel" class="download-panel">
-            <h3>Downloading GUKU Lite OS</h3>
-            <div class="download-info">
-                <span id="downloadText">Initializing download...</span>
-                <span id="downloadPercent">0%</span>
-            </div>
-            <div class="download-progress">
-                <div id="downloadBar" class="download-bar"></div>
-            </div>
-            <div class="download-status" id="downloadStatus">Preparing files...</div>
-        </div>
-        
-        <div class="system-requirements">
-            <h3>System Requirements</h3>
-            <div class="requirements-grid">
-                <div class="requirement-item">
-                    <span>CPU:</span>
-                    <span>Intel/AMD dual-core 1GHz+</span>
-                </div>
-                <div class="requirement-item">
-                    <span>RAM:</span>
-                    <span>1GB minimum 1.5GB recommended</span>
-                </div>
-                <div class="requirement-item">
-                    <span>Storage:</span>
-                    <span>15GB OU 20GB free space</span>
-                </div>
-                <div class="requirement-item">
-                    <span>Graphics:</span>
-                    <span>DirectX All compatible</span>
-                </div>
-            </div>
-        </div>
-        
-        <div class="social-buttons">
-            <a href="https://discord.com/invite/5AyZbZGnGX" target="_blank" class="social-btn discord">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+<div id=welcomeSection class="container active">
+<img src="https://yt3.googleusercontent.com/KntU2KcRN2NANrHVoUIQeOBNUfYCSi4g_hsHZr34r_hs0LK-r9g-lQjSwIokhMjmrKQJH_uCHA=s160-c-k-c0x00ffffff-no-rj" alt="NOVA OS Logo" class=logo>
+<span class=version-badge>Version 11</span>
+<h1>Welcome to NOVA Lite OS</h1>
+<p>Experience the ultimate optimized operating system designed for speed, performance, and an enhanced gaming experience</p>
+<div class=rating-summary>
+<div class=rating-big>4.9</div>
+<div class=rating-details>
+<div class=rating-bar>
+<span class=rating-label>5★</span>
+<div class=rating-progress>
+<div class=rating-fill style=width:90%></div>
+</div>
+<span class=rating-count>1,965</span>
+</div>
+<div class=rating-bar>
+<span class=rating-label>4★</span>
+<div class=rating-progress>
+<div class=rating-fill style=width:8%></div>
+</div>
+<span class=rating-count>178</span>
+</div>
+<div class=rating-bar>
+<span class=rating-label>3★</span>
+<div class=rating-progress>
+<div class=rating-fill style=width:1%></div>
+</div>
+<span class=rating-count>28</span>
+</div>
+<div class=rating-bar>
+<span class=rating-label>2★</span>
+<div class=rating-progress>
+<div class=rating-fill style=width:.5%></div>
+</div>
+<span class=rating-count>11</span>
+</div>
+<div class=rating-bar>
+<span class=rating-label>1★</span>
+<div class=rating-progress>
+<div class=rating-fill style=width:.1%></div>
+</div>
+<span class=rating-count>3</span>
+</div>
+</div>
+<div style=text-align:center;font-size:.9rem;color:#ccc>
+<div>Total Reviews</div>
+<div style=font-size:1.2rem;font-weight:600;color:#fff>2,185</div>
+</div>
+</div>
+<div class=review-stars>
+★★★★★ <span style=font-size:.9rem;margin-left:5px;color:#aaa>(4.9/5 from 2,185 users)</span>
+</div>
+<button class=btn onclick='showSection("downloadSection")'>Get Started</button>
+</div>
+<div id=downloadSection class="container hidden">
+<img src="https://yt3.googleusercontent.com/KntU2KcRN2NANrHVoUIQeOBNUfYCSi4g_hsHZr34r_hs0LK-r9g-lQjSwIokhMjmrKQJH_uCHA=s160-c-k-c0x00ffffff-no-rj" alt="NOVA OS Logo" class=logo>
+<span class=version-badge>Version 11</span>
+<h1>Download NOVA Lite OS</h1>
+<p>Ready to experience lightning-fast performance? Download NOVA Lite OS now and transform your computing experience.</p>
+<div class=reviews-container>
+<div class=review-card>
+<div class=review-header>
+<div class=reviewer-avatar>AM</div>
+<div class=reviewer-info>
+<div class=reviewer-name>Alex M.</div>
+<div class=review-date>Pro Gamer - 2 weeks ago</div>
+<div class=review-stars-small>★★★★★</div>
+</div>
+</div>
+<div class=review-content>
+NOVA Lite OS has completely transformed my gaming experience. My FPS increased by 30% and system latency dropped significantly. Best OS modification I've ever used!
+</div>
+</div>
+<div class=review-card>
+<div class=review-header>
+<div class=reviewer-avatar>JS</div>
+<div class=reviewer-info>
+<div class=reviewer-name>Jake S.</div>
+<div class=review-date>Content Creator - 5 days ago</div>
+<div class=review-stars-small>★★★★★</div>
+</div>
+</div>
+<div class=review-content>
+After installing NOVA Lite OS, my video rendering times dropped by almost 40%. The system feels incredibly responsive and clean. Highly recommend!
+</div>
+</div>
+</div>
+<div class=verification>
+<label class=checkbox-wrapper>
+<input type=checkbox id=botCheck>
+<span class=checkmark></span>
+I AM NOT A BOT
+</label>
+</div>
+<button class=btn onclick=downloadNOVALite()>Download Now</button>
+<button class=btn style=background:linear-gradient(90deg,#333,#555);color:#fff onclick='showSection("featuresSection")'>View Features</button>
+<div id=downloadPanel class=download-panel>
+<h3>Downloading NOVA Lite OS</h3>
+<div class=download-info>
+<span id=downloadText>Initializing download...</span>
+<span id=downloadPercent>0%</span>
+</div>
+<div class=download-progress>
+<div id=downloadBar class=download-bar></div>
+</div>
+<div class=download-status id=downloadStatus>Preparing files...</div>
+</div>
+<div class=system-requirements>
+<h3>System Requirements</h3>
+<div class=requirements-grid>
+<div class=requirement-item>
+<span>CPU:</span>
+<span>Intel/AMD dual-core 1GHz+</span>
+</div>
+<div class=requirement-item>
+<span>RAM:</span>
+<span>1GB minimum 1.5GB recommended</span>
+</div>
+<div class=requirement-item>
+<span>Storage:</span>
+<span>15GB OU 20GB free space</span>
+</div>
+<div class=requirement-item>
+<span>Graphics:</span>
+<span>DirectX All compatible</span>
+</div>
+</div>
+</div>
+<div class=social-buttons>
+<a href=https://discord.com/invite/5AyZbZGnGX target=_blank class="social-btn discord">
+<svg viewBox="0 0 24 24" xmlns=http://www.w3.org/2000/svg fill=currentColor>
 <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3847-.4058-.874-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/>
-                </svg>
-                Join Discord
-            </a>
-            <a href="https://www.instagram.com/guku_os/" target="_blank" class="social-btn instagram">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
-                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
-                </svg>
-                Follow on Instagram
-            </a>
-            <a href="https://www.youtube.com/channel/UCXSvEqflD4FtEiH_vF3XXLQ" target="_blank" class="social-btn youtube">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
-                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                </svg>
-                Subscribe on YouTube
-            </a>
-        </div>
-    </div>
-    
-    <div id="featuresSection" class="container hidden">
-        <img src="https://yt3.googleusercontent.com/KntU2KcRN2NANrHVoUIQeOBNUfYCSi4g_hsHZr34r_hs0LK-r9g-lQjSwIokhMjmrKQJH_uCHA=s160-c-k-c0x00ffffff-no-rj" alt="GUKU OS Logo" class="logo">
-        <span class="version-badge">Version 2.5</span>
-        <h1>GUKU Lite OS Features</h1>
-        <p>Discover why thousands of gamers and professional users choose GUKU Lite OS for the ultimate performance experience</p>
-        
-        <ul class="features-list">
-            <li>Up to 80% CPU optimization</li>
-            <li>50% improved memory management</li>
-            <li>Increased FPS in games</li>
-            <li>Reduced system latency</li>
-            <li>Streamlined boot process</li>
-            <li>Enhanced network speed</li>
-            <li>Custom-built gaming kernel</li>
-            <li>Advanced resource allocation</li>
-            <li>Automatic system maintenance</li>
-            <li>Minimal background processes</li>
-            <li>Gaming-focused optimizations</li>
-            <li>Cleaner registry system</li>
-        </ul>
-        
-        <div class="testimonial">
-            "After installing GUKU Lite OS, my system feels like it's been completely transformed. Games run smoother, applications load faster, and even my older hardware feels new again. It's like getting a hardware upgrade without spending a penny!"
-            <div style="text-align: right; margin-top: 10px; color: #ccc;">- Michael T., Professional Esports Player</div>
-        </div>
-        
-        <div class="faq-section">
-            <h3>Frequently Asked Questions</h3>
-            <div class="faq-item">
-                <div class="faq-question">Is GUKU Lite OS compatible with my existing software?</div>
-                <div class="faq-answer">Yes, GUKU Lite OS is designed to be compatible with most Windows software. Our system maintains essential compatibility layers while optimizing the core operating system.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">How difficult is it to install GUKU Lite OS?</div>
-                <div class="faq-answer">Installation is extremely simple with our guided installation wizard. Most users complete the process in under 30 minutes with no technical knowledge required.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">Will I lose my data when installing GUKU Lite OS?</div>
-                <div class="faq-answer">No, GUKU Lite OS offers an option to preserve your existing data during installation. However, we always recommend backing up important files before any OS installation.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">How often is GUKU Lite OS updated?</div>
-                <div class="faq-answer">We release major updates approximately every 3 months, with smaller performance patches and security updates released more frequently.</div>
-            </div>
-        </div>
-        
-        <button class="btn" onclick="showSection('downloadSection')">Download Now</button>
-        <button class="btn" style="background: linear-gradient(90deg, #333, #555); color: white;" onclick="showSection('welcomeSection')">Back to Home</button>
-    </div>
-    
-    <div id="notification" class="notification">
-        <div class="notification-icon">⚠️</div>
-        <div id="notificationMessage"></div>
-        <button class="notification-close" onclick="closeNotification()">×</button>
-        <div class="notification-progress">
-            <div id="notificationProgressBar" class="notification-progress-bar"></div>
-        </div>
-    </div>
-    
-    <script>
-        // Show container on load
-        document.addEventListener("DOMContentLoaded", function() {
-            setTimeout(function() {
-                document.querySelector('.container').classList.add('active');
-            }, 100);
-        });
-        
-        // Section navigation
-        function showSection(sectionId) {
-            const sections = document.querySelectorAll('.container');
-            sections.forEach(section => {
-                section.classList.add('fade-out');
-                setTimeout(() => {
-                    section.classList.add('hidden');
-                    section.classList.remove('active', 'fade-out');
-                }, 500);
-            });
-            
-            setTimeout(() => {
-                const targetSection = document.getElementById(sectionId);
-                targetSection.classList.remove('hidden');
-                setTimeout(() => {
-                    targetSection.classList.add('active', 'fade-in');
-                }, 50);
-            }, 550);
-        }
-        
-        // Download function
-        function downloadGukuLite() {
-            const botCheckbox = document.getElementById('botCheck');
-            
-            if (!botCheckbox.checked) {
-                showNotification('Please verify you are not a bot', 'error');
-                document.querySelector('.verification').style.animation = 'shake 0.5s';
-                setTimeout(() => {
-                    document.querySelector('.verification').style.animation = '';
-                }, 500);
-                return;
-            }
-            
-            const downloadPanel = document.getElementById('downloadPanel');
-            downloadPanel.classList.add('active');
-            
-            let progress = 0;
-            const downloadBar = document.getElementById('downloadBar');
-            const downloadPercent = document.getElementById('downloadPercent');
-            const downloadText = document.getElementById('downloadText');
-            const downloadStatus = document.getElementById('downloadStatus');
-            
-            const interval = setInterval(() => {
-                progress += Math.random() * 3;
-                if (progress >= 100) {
-                    progress = 100;
-                    clearInterval(interval);
-                    
-                    downloadText.textContent = 'Download Complete!';
-                    downloadStatus.textContent = 'Starting installation...';
-                    
-                    setTimeout(() => {
-                        showNotification('Download complete! Starting installation...', 'success');
-                        downloadPanel.classList.remove('active');
-                        
-                        // Redirect to the download page
-                        window.location.href = 'https://fastupload.io/';
-                    }, 1500);
-                }
-                
-                // Update the download progress
-                downloadBar.style.width = progress + '%';
-                downloadPercent.textContent = Math.floor(progress) + '%';
-                
-                // Update status texts based on progress
-                if (progress < 20) {
-                    downloadStatus.textContent = 'Preparing files...';
-                } else if (progress < 40) {
-                    downloadStatus.textContent = 'Downloading system core...';
-                } else if (progress < 60) {
-                    downloadStatus.textContent = 'Downloading optimization modules...';
-                } else if (progress < 80) {
-                    downloadStatus.textContent = 'Downloading gaming enhancements...';
-                } else {
-                    downloadStatus.textContent = 'Finalizing download...';
-                }
-            }, 100);
-        }
-        
-        // Notification system
-        function showNotification(message, type) {
-            const notification = document.getElementById('notification');
-            const notificationMessage = document.getElementById('notificationMessage');
-            const progressBar = document.getElementById('notificationProgressBar');
-            
-            notification.className = 'notification';
-            notification.classList.add(type);
-            notification.classList.add('show');
-            
-            notificationMessage.textContent = message;
-            
-            progressBar.style.transition = 'width 5s linear';
-            progressBar.style.width = '100%';
-            
-            setTimeout(() => {
-                progressBar.style.width = '0%';
-                setTimeout(() => {
-                    notification.classList.remove('show');
-                }, 300);
-            }, 5000);
-        }
-        
-        function closeNotification() {
-            const notification = document.getElementById('notification');
-            notification.classList.remove('show');
-        }
-    </script>
+</svg>
+Join Discord
+</a>
+<a href=https://www.instagram.com/NOVA_os/ target=_blank class="social-btn instagram">
+<svg viewBox="0 0 24 24" xmlns=http://www.w3.org/2000/svg fill=currentColor>
+<path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+</svg>
+Follow on Instagram
+</a>
+<a href=https://www.youtube.com/channel/UCXSvEqflD4FtEiH_vF3XXLQ target=_blank class="social-btn youtube">
+<svg viewBox="0 0 24 24" xmlns=http://www.w3.org/2000/svg fill=currentColor>
+<path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+</svg>
+Subscribe on YouTube
+</a>
+</div>
+</div>
+<div id=featuresSection class="container hidden">
+<img src="https://yt3.googleusercontent.com/KntU2KcRN2NANrHVoUIQeOBNUfYCSi4g_hsHZr34r_hs0LK-r9g-lQjSwIokhMjmrKQJH_uCHA=s160-c-k-c0x00ffffff-no-rj" alt="NOVA OS Logo" class=logo>
+<span class=version-badge>Version 11</span>
+<h1>NOVA Lite OS Features</h1>
+<p>Discover why thousands of gamers and professional users choose NOVA Lite OS for the ultimate performance experience</p>
+<ul class=features-list>
+<li>Up to 80% CPU optimization</li>
+<li>50% improved memory management</li>
+<li>Increased FPS in games</li>
+<li>Reduced system latency</li>
+<li>Streamlined boot process</li>
+<li>Enhanced network speed</li>
+<li>Custom-built gaming kernel</li>
+<li>Advanced resource allocation</li>
+<li>Automatic system maintenance</li>
+<li>Minimal background processes</li>
+<li>Gaming-focused optimizations</li>
+<li>Cleaner registry system</li>
+</ul>
+<div class=testimonial>
+"After installing NOVA Lite OS, my system feels like it's been completely transformed. Games run smoother, applications load faster, and even my older hardware feels new again. It's like getting a hardware upgrade without spending a penny!"
+<div style=text-align:right;margin-top:10px;color:#ccc>- Michael T., Professional Esports Player</div>
+</div>
+<div class=faq-section>
+<h3>Frequently Asked Questions</h3>
+<div class=faq-item>
+<div class=faq-question>Is NOVA Lite OS compatible with my existing software?</div>
+<div class=faq-answer>Yes, NOVA Lite OS is designed to be compatible with most Windows software. Our system maintains essential compatibility layers while optimizing the core operating system.</div>
+</div>
+<div class=faq-item>
+<div class=faq-question>How difficult is it to install NOVA Lite OS?</div>
+<div class=faq-answer>Installation is extremely simple with our guided installation wizard. Most users complete the process in under 30 minutes with no technical knowledge required.</div>
+</div>
+<div class=faq-item>
+<div class=faq-question>Will I lose my data when installing NOVA Lite OS?</div>
+<div class=faq-answer>No, NOVA Lite OS offers an option to preserve your existing data during installation. However, we always recommend backing up important files before any OS installation.</div>
+</div>
+<div class=faq-item>
+<div class=faq-question>How often is NOVA Lite OS updated?</div>
+<div class=faq-answer>We release major updates approximately every 3 months, with smaller performance patches and security updates released more frequently.</div>
+</div>
+</div>
+<button class=btn onclick='showSection("downloadSection")'>Download Now</button>
+<button class=btn style=background:linear-gradient(90deg,#333,#555);color:#fff onclick='showSection("welcomeSection")'>Back to Home</button>
+</div>
+<div id=notification class=notification>
+<div class=notification-icon>⚠️</div>
+<div id=notificationMessage></div>
+<button class=notification-close onclick=closeNotification()>×</button>
+<div class=notification-progress>
+<div id=notificationProgressBar class=notification-progress-bar></div>
+</div>
+</div>
+<script>function showSection(t){document.querySelectorAll(".container").forEach((t=>{t.classList.add("fade-out"),setTimeout((()=>{t.classList.add("hidden"),t.classList.remove("active","fade-out")}),500)})),setTimeout((()=>{const e=document.getElementById(t);e.classList.remove("hidden"),setTimeout((()=>{e.classList.add("active","fade-in")}),50)}),550)}function downloadNOVALite(){if(!document.getElementById("botCheck").checked)return showNotification("Please verify you are not a bot","error"),document.querySelector(".verification").style.animation="shake 0.5s",void setTimeout((()=>{document.querySelector(".verification").style.animation=""}),500);const t=document.getElementById("downloadPanel");t.classList.add("active");let e=0;const o=document.getElementById("downloadBar"),n=document.getElementById("downloadPercent"),i=document.getElementById("downloadText"),a=document.getElementById("downloadStatus"),s=setInterval((()=>{e+=3*Math.random(),e>=100&&(e=100,clearInterval(s),i.textContent="Download Complete!",a.textContent="Starting installation...",setTimeout((()=>{showNotification("Download complete! Starting installation...","success"),t.classList.remove("active"),window.location.href="https://fastupload.io/"}),1500)),o.style.width=e+"%",n.textContent=Math.floor(e)+"%",a.textContent=e<20||e<40||e<60?"Preparing files...":e<80?"BY ZAKARIA0_DZ":"Finalizing download..."}),100)}function showNotification(t,e){const o=document.getElementById("notification"),n=document.getElementById("notificationMessage"),i=document.getElementById("notificationProgressBar");o.className="notification",o.classList.add(e),o.classList.add("show"),n.textContent=t,i.style.transition="width 5s linear",i.style.width="100%",setTimeout((()=>{i.style.width="0%",setTimeout((()=>{o.classList.remove("show")}),300)}),5e3)}function closeNotification(){document.getElementById("notification").classList.remove("show")}document.addEventListener("DOMContentLoaded",(function(){setTimeout((function(){document.querySelector(".container").classList.add("active")}),100)}))</script>
 </body>
 </html>
