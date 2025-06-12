@@ -1,602 +1,437 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>صفحة محمية</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            margin: 0;
-            padding: 20px;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            user-select: none;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-        }
+// Ultimate Protection Script - Full Security System
+(function() {
+    'use strict';
+    
+    // Protection state
+    let protectionActive = true;
+    let originalConsole = {};
+    
+    // Store original console methods before disabling
+    if (typeof console !== 'undefined') {
+        originalConsole = {
+            log: console.log,
+            warn: console.warn,
+            error: console.error,
+            info: console.info,
+            debug: console.debug,
+            trace: console.trace,
+            dir: console.dir,
+            dirxml: console.dirxml,
+            table: console.table,
+            group: console.group,
+            groupEnd: console.groupEnd,
+            clear: console.clear
+        };
+    }
 
-        .container {
-            text-align: center;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 40px;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            max-width: 90%;
-        }
-
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        p {
-            font-size: 1.2em;
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-
-        .warning {
-            color: #ff6b6b;
-            font-weight: bold;
-            font-size: 1.1em;
-            margin-top: 20px;
-            padding: 15px;
-            background: rgba(255, 107, 107, 0.2);
-            border-radius: 10px;
-            border: 2px solid #ff6b6b;
-        }
-
-        .device-info {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 15px;
-            border-radius: 10px;
-            margin-top: 20px;
-            font-size: 0.9em;
-        }
-
-        .security-breach {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 0, 0, 0.9);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 99999;
-            flex-direction: column;
-            font-size: 2em;
-            font-weight: bold;
-            text-align: center;
-            animation: pulse 1s infinite;
-        }
-
-        @keyframes pulse {
-            0% { opacity: 0.8; }
-            50% { opacity: 1; }
-            100% { opacity: 0.8; }
-        }
-
-        ::selection {
-            background: transparent;
-        }
-
-        ::-moz-selection {
-            background: transparent;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 20px;
-            }
-            h1 {
-                font-size: 2em;
-            }
-            p {
-                font-size: 1em;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>🔒 صفحة محمية</h1>
-        <p>هذه صفحة تجريبية محمية من أدوات المطورين</p>
-        <p>تم تطبيق جميع إجراءات الحماية المطلوبة</p>
-        <div class="warning">
-            تحذير: محاولة الوصول لأدوات المطورين محظورة!
-        </div>
-        <div class="device-info" id="deviceInfo">
-            <div>نوع الجهاز: <span id="deviceType"></span></div>
-            <div>حالة الحماية: <span style="color: #4CAF50;">نشطة ✓</span></div>
-        </div>
-    </div>
-
-    <script>
-        // متغيرات الحماية والتتبع
-        let hackAttempts = 0;
-        let initialDeviceType = null;
-        let deviceCheckInterval = null;
-        let isSecurityBreach = false;
-
-        // دالة كشف نوع الجهاز
-        function detectDeviceType() {
-            const userAgent = navigator.userAgent.toLowerCase();
-            const isMobile = /mobile|android|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent);
-            const isTablet = /tablet|ipad/i.test(userAgent);
-            const hasTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-            const screenWidth = window.screen.width;
-            const screenHeight = window.screen.height;
+    // Master Protection Object
+    const UltimateProtection = {
+        
+        // Disable ALL keyboard shortcuts
+        disableAllShortcuts: function() {
+            document.addEventListener('keydown', function(e) {
+                // F-keys
+                if (e.key.startsWith('F') && e.key.length > 1) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                }
+                
+                // Ctrl combinations
+                if (e.ctrlKey) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                }
+                
+                // Alt combinations
+                if (e.altKey) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                }
+                
+                // Shift combinations with special keys
+                if (e.shiftKey && (e.key === 'Tab' || e.key === 'Delete' || e.key === 'Insert')) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                }
+                
+                // Windows/Command key
+                if (e.metaKey) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                }
+                
+                // Special keys
+                const blockedKeys = ['PrintScreen', 'Insert', 'Delete', 'Home', 'End', 'PageUp', 'PageDown'];
+                if (blockedKeys.includes(e.key)) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                }
+                
+            }, true);
             
-            // تحليل شامل لنوع الجهاز
-            let deviceType = 'desktop';
-            
-            if (isMobile && !isTablet) {
-                deviceType = 'mobile';
-            } else if (isTablet) {
-                deviceType = 'tablet';
-            } else if (hasTouch && (screenWidth <= 1024 || screenHeight <= 768)) {
-                deviceType = 'tablet';
-            } else if (screenWidth <= 768) {
-                deviceType = 'mobile';
-            }
+            // Disable keyup events too
+            document.addEventListener('keyup', function(e) {
+                if (e.ctrlKey || e.altKey || e.metaKey || e.key.startsWith('F')) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                }
+            }, true);
+        },
 
-            return {
-                type: deviceType,
-                isMobile: isMobile,
-                isTablet: isTablet,
-                hasTouch: hasTouch,
-                screenWidth: screenWidth,
-                screenHeight: screenHeight,
-                userAgent: navigator.userAgent,
-                platform: navigator.platform
+        // Disable right-click and context menu
+        disableRightClick: function() {
+            document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+            }, true);
+            
+            document.addEventListener('mousedown', function(e) {
+                if (e.button === 2) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                }
+            }, true);
+            
+            document.addEventListener('mouseup', function(e) {
+                if (e.button === 2) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                }
+            }, true);
+        },
+
+        // Disable text selection and drag
+        disableSelection: function() {
+            // CSS method
+            const style = document.createElement('style');
+            style.innerHTML = `
+                * {
+                    -webkit-user-select: none !important;
+                    -moz-user-select: none !important;
+                    -ms-user-select: none !important;
+                    user-select: none !important;
+                    -webkit-touch-callout: none !important;
+                    -webkit-tap-highlight-color: transparent !important;
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // JavaScript events
+            document.addEventListener('selectstart', function(e) {
+                e.preventDefault();
+                return false;
+            }, true);
+            
+            document.addEventListener('dragstart', function(e) {
+                e.preventDefault();
+                return false;
+            }, true);
+            
+            document.addEventListener('drop', function(e) {
+                e.preventDefault();
+                return false;
+            }, true);
+            
+            document.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                return false;
+            }, true);
+        },
+
+        // Completely disable console
+        disableConsole: function() {
+            if (typeof console !== 'undefined') {
+                console.log = console.warn = console.error = console.info = 
+                console.debug = console.trace = console.dir = console.dirxml = 
+                console.table = console.group = console.groupEnd = console.clear = 
+                console.count = console.countReset = console.time = console.timeEnd = 
+                console.timeLog = console.assert = console.profile = console.profileEnd = 
+                function() {};
+                
+                // Freeze console object
+                Object.freeze(console);
+            }
+            
+            // Override global console
+            window.console = undefined;
+            delete window.console;
+        },
+
+        // Hide browser developer tools and extensions
+        hideBrowserTools: function() {
+            // Hide browser menu (three dots)
+            document.addEventListener('keydown', function(e) {
+                // Alt + F (Firefox menu)
+                // Alt + E (Edge menu)
+                // Alt + H (Help menu)
+                // Alt + T (Tools menu)
+                // Alt + V (View menu)
+                if (e.altKey && ['F', 'E', 'H', 'T', 'V', 'B', 'S', 'G'].includes(e.key.toUpperCase())) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                }
+            }, true);
+            
+            // Block extension shortcuts
+            const extensionShortcuts = [
+                'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12'
+            ];
+            
+            document.addEventListener('keydown', function(e) {
+                if (extensionShortcuts.includes(e.key)) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                }
+            }, true);
+        },
+
+        // Advanced developer tools detection
+        detectDevTools: function() {
+            let devtools = {open: false};
+            
+            // Method 1: Screen size detection
+            setInterval(function() {
+                const widthThreshold = window.screen.availWidth - window.innerWidth > 200;
+                const heightThreshold = window.screen.availHeight - window.innerHeight > 200;
+                
+                if (widthThreshold || heightThreshold) {
+                    if (!devtools.open) {
+                        devtools.open = true;
+                        document.documentElement.style.display = 'none';
+                        document.body.style.display = 'none';
+                    }
+                }
+            }, 100);
+            
+            // Method 2: Console detection
+            let consoleDetection = setInterval(function() {
+                let before = Date.now();
+                debugger;
+                let after = Date.now();
+                if (after - before > 100) {
+                    document.documentElement.style.display = 'none';
+                    document.body.style.display = 'none';
+                    clearInterval(consoleDetection);
+                }
+            }, 1000);
+            
+            // Method 3: Function toString detection
+            let element = new Image();
+            Object.defineProperty(element, 'id', {
+                get: function() {
+                    document.documentElement.style.display = 'none';
+                    document.body.style.display = 'none';
+                }
+            });
+            setInterval(function() {
+                console.log(element);
+            }, 1000);
+        },
+
+        // Disable print functionality
+        disablePrint: function() {
+            window.addEventListener('beforeprint', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+            }, true);
+            
+            window.addEventListener('afterprint', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+            }, true);
+            
+            // Override print function
+            window.print = function() {
+                return false;
             };
-        }
+        },
 
-        // دالة إظهار خرق الأمان
-        function showSecurityBreach(reason) {
-            if (isSecurityBreach) return;
-            
-            isSecurityBreach = true;
-            
-            const breachDiv = document.createElement('div');
-            breachDiv.className = 'security-breach';
-            breachDiv.innerHTML = `
-                <div>🚨 خرق أمني مكتشف! 🚨</div>
-                <div style="font-size: 0.7em; margin-top: 20px;">${reason}</div>
-                <div style="font-size: 0.5em; margin-top: 20px;">سيتم إغلاق الصفحة خلال 5 ثوان...</div>
-            `;
-            
-            document.body.appendChild(breachDiv);
-            
-            // إغلاق الصفحة بعد 5 ثوان
-            setTimeout(() => {
-                window.location.href = 'about:blank';
-            }, 5000);
-        }
-
-        // دالة فحص تغيير نوع الجهاز
-        function checkDeviceChange() {
-            const currentDevice = detectDeviceType();
-            
-            if (initialDeviceType === null) {
-                initialDeviceType = currentDevice;
-                updateDeviceInfo(currentDevice);
-                return;
-            }
-
-            // فحص تغيير نوع الجهاز الأساسي
-            if (currentDevice.type !== initialDeviceType.type) {
-                showSecurityBreach(`تم كشف تغيير نوع الجهاز من ${getDeviceNameAr(initialDeviceType.type)} إلى ${getDeviceNameAr(currentDevice.type)}`);
-                return;
-            }
-
-            // فحص تغيير خصائص الشاشة بشكل جذري
-            const widthDiff = Math.abs(currentDevice.screenWidth - initialDeviceType.screenWidth);
-            const heightDiff = Math.abs(currentDevice.screenHeight - initialDeviceType.screenHeight);
-            
-            if (widthDiff > 100 || heightDiff > 100) {
-                showSecurityBreach(`تم كشف تغيير جذري في أبعاد الشاشة`);
-                return;
-            }
-
-            // فحص تغيير حالة اللمس
-            if (currentDevice.hasTouch !== initialDeviceType.hasTouch) {
-                showSecurityBreach(`تم كشف تغيير في حالة دعم اللمس`);
-                return;
-            }
-
-            // فحص تغيير User Agent
-            if (currentDevice.userAgent !== initialDeviceType.userAgent) {
-                showSecurityBreach(`تم كشف تغيير في User Agent`);
-                return;
-            }
-
-            // فحص تغيير Platform
-            if (currentDevice.platform !== initialDeviceType.platform) {
-                showSecurityBreach(`تم كشف تغيير في نوع النظام`);
-                return;
-            }
-        }
-
-        // دالة تحديث معلومات الجهاز
-        function updateDeviceInfo(device) {
-            const deviceTypeSpan = document.getElementById('deviceType');
-            if (deviceTypeSpan) {
-                deviceTypeSpan.textContent = getDeviceNameAr(device.type);
-            }
-        }
-
-        // دالة الحصول على اسم الجهاز بالعربية
-        function getDeviceNameAr(deviceType) {
-            switch(deviceType) {
-                case 'mobile': return 'هاتف محمول';
-                case 'tablet': return 'جهاز لوحي';
-                case 'desktop': return 'كمبيوتر مكتبي';
-                default: return 'غير معروف';
-            }
-        }
-
-        // بدء فحص نوع الجهاز
-        function startDeviceMonitoring() {
-            checkDeviceChange();
-            deviceCheckInterval = setInterval(checkDeviceChange, 1000);
-        }
-
-        // جميع إجراءات الحماية السابقة
-        document.addEventListener('keydown', function(e) {
-            if (isSecurityBreach) return;
-            
-            // منع F12
-            if (e.key === 'F12') {
-                e.preventDefault();
-                showWarning('F12 محظور!');
-                return false;
-            }
-            
-            // منع Ctrl+Shift+I (أدوات المطورين)
-            if (e.ctrlKey && e.shiftKey && e.key === 'I') {
-                e.preventDefault();
-                showWarning('أدوات المطورين محظورة!');
-                return false;
-            }
-            
-            // منع Ctrl+Shift+J (Console)
-            if (e.ctrlKey && e.shiftKey && e.key === 'J') {
-                e.preventDefault();
-                showWarning('Console محظور!');
-                return false;
-            }
-            
-            // منع Ctrl+U (عرض المصدر)
-            if (e.ctrlKey && e.key === 'u') {
-                e.preventDefault();
-                showWarning('عرض المصدر محظور!');
-                return false;
-            }
-            
-            // منع Ctrl+S (حفظ الصفحة)
-            if (e.ctrlKey && e.key === 's') {
-                e.preventDefault();
-                showWarning('حفظ الصفحة محظور!');
-                return false;
-            }
-            
-            // منع Ctrl+A (تحديد الكل)
-            if (e.ctrlKey && e.key === 'a') {
-                e.preventDefault();
-                showWarning('تحديد الكل محظور!');
-                return false;
-            }
-            
-            // منع Ctrl+C (نسخ)
-            if (e.ctrlKey && e.key === 'c') {
-                e.preventDefault();
-                showWarning('النسخ محظور!');
-                return false;
-            }
-            
-            // منع Ctrl+V (لصق)
-            if (e.ctrlKey && e.key === 'v') {
-                e.preventDefault();
-                showWarning('اللصق محظور!');
-                return false;
-            }
-            
-            // منع Ctrl+X (قص)
-            if (e.ctrlKey && e.key === 'x') {
-                e.preventDefault();
-                showWarning('القص محظور!');
-                return false;
-            }
-            
-            // منع Ctrl+P (طباعة)
-            if (e.ctrlKey && e.key === 'p') {
-                e.preventDefault();
-                showWarning('الطباعة محظورة!');
-                return false;
-            }
-
-            // منع جميع shortcuts مع Alt
-            if (e.altKey) {
-                e.preventDefault();
-                showWarning('Alt shortcuts محظورة!');
-                return false;
-            }
-            
-            // منع Escape
-            if (e.key === 'Escape') {
-                e.preventDefault();
-                showWarning('زر Escape محظور!');
-                return false;
-            }
-        });
-
-        // منع النقر الأيمن
-        document.addEventListener('contextmenu', function(e) {
-            if (isSecurityBreach) return;
-            e.preventDefault();
-            showWarning('النقر الأيمن محظور!');
-            return false;
-        });
-
-        // منع السحب والإفلات
-        document.addEventListener('dragstart', function(e) {
-            if (isSecurityBreach) return;
-            e.preventDefault();
-            showWarning('السحب والإفلات محظور!');
-            return false;
-        });
-
-        // منع التحديد بالماوس
-        document.addEventListener('selectstart', function(e) {
-            if (isSecurityBreach) return;
-            e.preventDefault();
-            showWarning('التحديد محظور!');
-            return false;
-        });
-
-        // كشف أدوات المطورين بطرق مختلفة
-        let devtools = {open: false, orientation: null};
-        const threshold = 160;
-
-        setInterval(function() {
-            if (isSecurityBreach) return;
-            
-            if (window.outerHeight - window.innerHeight > threshold || 
-                window.outerWidth - window.innerWidth > threshold) {
-                if (!devtools.open) {
-                    devtools.open = true;
-                    showSecurityBreach('تم كشف أدوات المطورين مفتوحة!');
+        // Disable browser zoom
+        disableZoom: function() {
+            document.addEventListener('wheel', function(e) {
+                if (e.ctrlKey) {
+                    e.preventDefault();
+                    return false;
                 }
-            } else {
-                devtools.open = false;
-            }
-        }, 500);
-
-        // كشف Console
-        let devtools2 = {open: false};
-
-        function checkDevTools() {
-            if (isSecurityBreach) return;
+            }, { passive: false });
             
-            const start = new Date();
-            debugger;
-            const end = new Date();
-            if (end - start > 100) {
-                if (!devtools2.open) {
-                    devtools2.open = true;
-                    showSecurityBreach('تم كشف Console مفتوح!');
-                }
-            } else {
-                devtools2.open = false;
-            }
-        }
-
-        setInterval(checkDevTools, 1000);
-
-        // حماية من النسخ واللصق
-        document.addEventListener('copy', function(e) {
-            if (isSecurityBreach) return;
-            e.preventDefault();
-            showWarning('النسخ محظور!');
-            return false;
-        });
-
-        document.addEventListener('paste', function(e) {
-            if (isSecurityBreach) return;
-            e.preventDefault();
-            showWarning('اللصق محظور!');
-            return false;
-        });
-
-        // منع الطباعة
-        window.addEventListener('beforeprint', function(e) {
-            if (isSecurityBreach) return;
-            e.preventDefault();
-            showWarning('الطباعة محظورة!');
-            return false;
-        });
-
-        // منع النقر المزدوج للتحديد
-        document.addEventListener('mousedown', function(e) {
-            if (isSecurityBreach) return;
-            if (e.detail > 1) {
+            document.addEventListener('gesturestart', function(e) {
                 e.preventDefault();
-                showWarning('التحديد محظور!');
-                return false;
-            }
-        });
+            });
+            
+            document.addEventListener('gesturechange', function(e) {
+                e.preventDefault();
+            });
+            
+            document.addEventListener('gestureend', function(e) {
+                e.preventDefault();
+            });
+        },
 
-        // دالة إظهار التحذيرات
-        function showWarning(message) {
-            if (isSecurityBreach) return;
-            
-            hackAttempts++;
-            
-            const warning = document.createElement('div');
-            warning.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
-                color: white;
-                padding: 15px 25px;
-                border-radius: 10px;
-                font-weight: bold;
-                font-size: 16px;
-                box-shadow: 0 4px 20px rgba(255, 107, 107, 0.4);
-                z-index: 10000;
-                animation: slideIn 0.3s ease-out;
-                border: 2px solid #ff4757;
-                text-align: center;
-                min-width: 250px;
-            `;
-            
-            warning.innerHTML = `
-                <div>⚠️ ${message}</div>
-                <div style="font-size: 12px; margin-top: 5px; opacity: 0.9;">
-                    محاولة رقم: ${hackAttempts}
-                </div>
-            `;
-            
-            // إضافة CSS للحركة
-            if (!document.getElementById('warningStyle')) {
-                const style = document.createElement('style');
-                style.id = 'warningStyle';
-                style.textContent = `
-                    @keyframes slideIn {
-                        from {
-                            transform: translateX(100%);
-                            opacity: 0;
-                        }
-                        to {
-                            transform: translateX(0);
-                            opacity: 1;
-                        }
+        // Block suspicious extensions and add-ons
+        blockExtensions: function() {
+            // Detect common extension injection points
+            const observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    if (mutation.addedNodes) {
+                        mutation.addedNodes.forEach(function(node) {
+                            if (node.nodeType === 1) { // Element node
+                                // Check for extension-like attributes
+                                const suspiciousAttrs = ['data-extension', 'chrome-extension', 'moz-extension', 'extension-'];
+                                const hasExtensionAttr = suspiciousAttrs.some(attr => 
+                                    node.getAttribute && node.getAttribute(attr)
+                                );
+                                
+                                if (hasExtensionAttr || 
+                                    (node.id && node.id.includes('extension')) ||
+                                    (node.className && node.className.includes('extension'))) {
+                                    node.remove();
+                                }
+                            }
+                        });
                     }
-                    @keyframes slideOut {
-                        from {
-                            transform: translateX(0);
-                            opacity: 1;
-                        }
-                        to {
-                            transform: translateX(100%);
-                            opacity: 0;
-                        }
-                    }
-                `;
-                document.head.appendChild(style);
-            }
+                });
+            });
             
-            document.body.appendChild(warning);
-            
-            setTimeout(() => {
-                warning.style.animation = 'slideOut 0.3s ease-in';
-                setTimeout(() => {
-                    if (warning.parentNode) {
-                        warning.parentNode.removeChild(warning);
-                    }
-                }, 300);
-            }, 3000);
-            
-            // إذا تجاوزت المحاولات 10، إظهار خرق أمني
-            if (hackAttempts > 10) {
-                showSecurityBreach('تم كشف محاولات اختراق متعددة!');
-            }
-        }
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true,
+                attributes: true
+            });
+        },
 
-        // منع مغادرة الصفحة
-        window.addEventListener('beforeunload', function(e) {
-            if (isSecurityBreach) return;
-            const confirmationMessage = 'هل أنت متأكد من مغادرة الصفحة؟';
-            e.returnValue = confirmationMessage;
-            return confirmationMessage;
-        });
-
-        // حماية Console
-        (function() {
-            let _log = console.log;
-            console.log = function() {
-                if (!isSecurityBreach) {
-                    showWarning('استخدام Console محظور!');
+        // Disable developer mode detection
+        antiTamper: function() {
+            // Check if page source is being accessed
+            let sourceCheck = setInterval(function() {
+                if (document.documentElement.innerHTML.includes('view-source:')) {
+                    document.documentElement.innerHTML = '';
+                    document.body.innerHTML = '';
+                    clearInterval(sourceCheck);
                 }
+            }, 100);
+            
+            // Protect against script injection
+            const originalCreateElement = document.createElement;
+            document.createElement = function(tagName) {
+                if (tagName.toLowerCase() === 'script') {
+                    return null;
+                }
+                return originalCreateElement.apply(document, arguments);
             };
-            console.error = console.log;
-            console.warn = console.log;
-            console.info = console.log;
-            console.clear = console.log;
-            console.dir = console.log;
-            console.trace = console.log;
-        })();
-
-        // حماية إضافية من التلاعب
-        Object.defineProperty(document, 'getElementById', {
-            value: function(id) {
-                if (id === 'deviceInfo' || id === 'deviceType' || id === 'warningStyle') {
-                    return document.querySelector('#' + id);
-                }
-                if (!isSecurityBreach) {
-                    showWarning('محاولة وصول مشبوهة للعناصر!');
-                }
-                return null;
-            },
-            writable: false
-        });
-
-        // رسائل Console
-        console.log('%cتوقف! 🛑', 'color: red; font-size: 50px; font-weight: bold;');
-        console.log('%cهذه منطقة محظورة للمطورين!', 'color: red; font-size: 20px;');
-        console.log('%cأي محاولة للوصول ستكون مراقبة', 'color: orange; font-size: 16px;');
-
-        // بدء مراقبة الجهاز عند تحميل الصفحة
-        window.addEventListener('load', function() {
-            startDeviceMonitoring();
-            console.log('🔒 جميع إجراءات الحماية نشطة');
-            console.log('📱 مراقبة نوع الجهاز نشطة');
-        });
-
-        // مراقبة تغيير الاتجاه
-        window.addEventListener('orientationchange', function() {
-            setTimeout(checkDeviceChange, 500);
-        });
-
-        // مراقبة تغيير حجم النافذة
-        window.addEventListener('resize', function() {
-            setTimeout(checkDeviceChange, 500);
-        });
-
-        // فحص دوري شامل
-        setInterval(function() {
-            if (isSecurityBreach) return;
             
-            // فحص إضافي للحماية
-            if (typeof window.console !== 'undefined') {
-                // فحص Console بصمت
-            }
-        }, 2000);
+            // Protect against innerHTML modification
+            Object.defineProperty(document.body, 'innerHTML', {
+                set: function(value) {
+                    if (value.includes('<script') || value.includes('javascript:')) {
+                        return;
+                    }
+                },
+                configurable: false
+            });
+        },
 
-        // حماية من محاولات إيقاف المراقبة
-        Object.defineProperty(window, 'clearInterval', {
-            value: function(intervalId) {
-                if (intervalId === deviceCheckInterval) {
-                    showSecurityBreach('محاولة إيقاف مراقبة الجهاز!');
-                    return;
+        // Ultimate stealth mode
+        stealthMode: function() {
+            // Hide from automation tools
+            Object.defineProperty(navigator, 'webdriver', {
+                get: () => false,
+            });
+            
+            // Hide automation properties
+            delete window.chrome;
+            delete window.navigator.chrome;
+            
+            // Override automation detection
+            window.navigator.permissions.query = () => Promise.resolve({state: 'granted'});
+            
+            // Block headless detection
+            Object.defineProperty(navigator, 'languages', {
+                get: () => ['en-US', 'en'],
+            });
+            
+            Object.defineProperty(navigator, 'plugins', {
+                get: () => [1, 2, 3, 4, 5],
+            });
+        },
+
+        // Initialize all protection methods
+        init: function() {
+            try {
+                this.disableAllShortcuts();
+                this.disableRightClick();
+                this.disableSelection();
+                this.disableConsole();
+                this.hideBrowserTools();
+                this.detectDevTools();
+                this.disablePrint();
+                this.disableZoom();
+                this.blockExtensions();
+                this.antiTamper();
+                this.stealthMode();
+                
+                console.log('%c🔒 Ultimate Protection Activated', 'color: red; font-size: 20px; font-weight: bold;');
+                
+            } catch (error) {
+                // Silent error handling
+            }
+        },
+
+        // Continuous protection monitoring
+        monitor: function() {
+            setInterval(() => {
+                if (!protectionActive) {
+                    document.documentElement.style.display = 'none';
+                    document.body.style.display = 'none';
                 }
-                return clearInterval.call(this, intervalId);
-            },
-            writable: false
+                
+                // Re-disable console if it gets re-enabled
+                if (typeof console !== 'undefined' && console.log.toString().includes('native')) {
+                    this.disableConsole();
+                }
+                
+                // Check for tamper attempts
+                if (document.querySelectorAll('script[src*="extension"]').length > 0) {
+                    document.querySelectorAll('script[src*="extension"]').forEach(script => script.remove());
+                }
+                
+            }, 500);
+        }
+    };
+
+    // Auto-initialize when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+            UltimateProtection.init();
+            UltimateProtection.monitor();
         });
-    </script>
-</body>
-</html>
+    } else {
+        UltimateProtection.init();
+        UltimateProtection.monitor();
+    }
+
+    // Immediate initialization
+    UltimateProtection.init();
+    UltimateProtection.monitor();
+
+    // Export for manual control (if needed)
+    window.UltimateProtection = UltimateProtection;
+
+    // Final protection layer
+    Object.freeze(UltimateProtection);
+    
+})();
