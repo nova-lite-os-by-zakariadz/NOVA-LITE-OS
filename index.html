@@ -12,37 +12,178 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+  
 
 
 
 
- #loadingScreen {
+  #toast {
+      display: none;
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      top: 80px;
+      right: 20px;
+      background: rgba(0,0,0,0.8);
+      padding: 10px 15px;
+      border-radius: 8px;
       color: white;
+      font-size: 17px;
+      z-index: 9999;
+      max-width: 200px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      animation: dropDown 0.5s ease-out;
+    }
+
+    @keyframes dropDown {
+      0% {
+        transform: translateY(-50px);
+        opacity: 0;
+      }
+      50% {
+        transform: translateY(10px);
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .toast-show {
+      animation: dropUp 0.3s ease-in forwards;
+    }
+
+    @keyframes dropUp {
+      0% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-30px);
+        opacity: 0;
+      }
+    }
+
+    .visitor-card {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(15px);
+      border-radius: 15px;
+      padding: 20px;
+      min-width: 200px;
+      border: 1px solid rgba(255,255,255,0.2);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      transform: scale(0.9);
+      opacity: 0;
+      animation: slideIn 0.5s ease-out forwards;
+    }
+
+    @keyframes slideIn {
+      0% {
+        transform: translateY(50px) scale(0.9);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+    }
+
+    .visitor-card:hover {
+      background: rgba(255,255,255,0.25);
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+    }
+
+    .card-header {
       display: flex;
-      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      z-index: 10000;
+      margin-bottom: 10px;
     }
 
-    .loading-container {
-      text-align: center;
-      max-width: 500px;
-      padding: 2rem;
+    .card-icon {
+      width: 24px;
+      height: 24px;
+      margin-right: 10px;
+      fill: white;
+    }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: white;
+    }
+
+    .visitor-count {
+      font-size: 2.2rem;
+      font-weight: bold;
+      color: #ffd700;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      animation: pulse 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulse {
+      0% { 
+        color: #ffd700;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      }
+      50% { 
+        color: #ffffff;
+        text-shadow: 0 2px 8px rgba(255,215,0,0.5);
+      }
+      100% { 
+        color: #00d4ff;
+        text-shadow: 0 2px 8px rgba(0,212,255,0.5);
+      }
+    }
+
+    .visitor-text {
+      font-size: 12px;
+      color: rgba(255,255,255,0.8);
+      margin-top: 5px;
     }
 
 
-   .logo1 {
+
+
+
+
+
+
+
+
+
+#loadingScreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.loading-container {
+  text-align: center;
+  max-width: 500px;
+  padding: 2rem;
+}
+
+
+
+    .logo1 {
             width: 120px;
             height: 120px;
             margin: 0 auto 2rem;
-            background: rgba(255, 255, 255, 0.1);
+           background: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -50,13 +191,33 @@
             font-size: 3rem;
             backdrop-filter: blur(10px);
             border: 2px solid rgba(255, 255, 255, 0.2);
+			 filter: drop-shadow(0 0 10px rgba(255, 204, 0, 0.5));
             animation: float 3s ease-in-out infinite;
+			
         }
+		
+		 .logo1:hover {
+            transform: rotate(5deg) scale(1.05);
+        }
+        
 
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
         }
+
+    .logo11 {
+            max-width: 120px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 10px rgba(255, 204, 0, 0.5));
+            border-radius: 50%;
+            border: 2px solid var(--primary-color);
+            transition: var(--transition-standard);
+        }
+        
+       
+
+
 
 
     .loading-title {
@@ -257,35 +418,6 @@
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         :root {
             --primary-color: #ffcc00;
             --primary-hover: #ff9900;
@@ -332,9 +464,6 @@ right: 20px;
     50%  { transform: scale(1.3); }
     100% { transform: scale(1); }
   }
-
-
-
 
 
         /* الظل الأصفر الصغير والخفيف */
@@ -1049,12 +1178,9 @@ right: 20px;
 </head>
 <body>
 
-
-
-
 <div id="loadingScreen">
   <div class="loading-container">
-    <div class="logo1">🚀</div>
+	 <img src="https://github.com/nova-lite-os-by-zakariadz/NOVA-LITE-OS/blob/main/Icon.png?raw=true" alt="NOVA OS Logo" class="logo1">
     
     <h1 class="loading-title">Loading</h1>
     <p class="loading-subtitle">Preparing your experience...</p>
@@ -1079,9 +1205,109 @@ right: 20px;
 </div>
 
 
+<div id="toast"></div>
+  
+  <!-- Visitor Card -->
+  <div class="visitor-card" onclick="showVisitorDetails()" title="Click for details">
+    <div class="card-header">
+      <svg class="card-icon" viewBox="0 0 24 24">
+        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+      </svg>
+      <div class="card-title">Visitors</div>
+    </div>
+    <div class="visitor-count" id="visits">0</div>
+    <div class="visitor-text">unique visitors</div>
+  </div>
+  
+  <script>
+    function getVisitorId() {
+      let id = localStorage.getItem("visitorId");
+      if (!id) {
+        id = "v_" + Date.now() + "_" + Math.random().toString(36).substring(2, 9);
+        localStorage.setItem("visitorId", id);
+        return true; // New visitor
+      }
+      return false; // Returning visitor
+    }
 
+    function getUniqueVisits() {
+      return parseInt(localStorage.getItem("uniqueVisits") || "0");
+    }
 
+    function incrementVisits() {
+      const current = getUniqueVisits();
+      const newCount = current + 1;
+      localStorage.setItem("uniqueVisits", newCount.toString());
+      return newCount;
+    }
 
+    function showMessage(count) {
+      const messages = {
+        10: "🎉 Amazing! 10 Visitors!",
+        50: "🔥 50 Visitors! Thank you!",
+        100: "🏆 100 Visitors! You're awesome!",
+        500: "🚀 500 Visitors! Incredible!"
+      };
+
+      if (messages[count]) {
+        toast(messages[count]);
+      }
+    }
+
+    function toast(msg) {
+      const el = document.getElementById("toast");
+      el.innerText = msg;
+      el.style.display = "block";
+      
+      // Hide with animation after 4 seconds
+      setTimeout(() => {
+        el.classList.add("toast-show");
+        setTimeout(() => {
+          el.style.display = "none";
+          el.classList.remove("toast-show");
+        }, 300);
+      }, 6000);
+    }
+
+    function showVisitorDetails() {
+      const count = getUniqueVisits();
+      const messages = [
+        `👥 Total Visitors: ${count}`,
+        `BY ZAKARIA0_DZ *-*`,
+      ];
+      
+      const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+      toast(randomMessage);
+    }
+
+    // Initialize
+    const isNewVisitor = getVisitorId();
+    let count = getUniqueVisits();
+    
+    if (isNewVisitor) {
+      count = incrementVisits();
+    }
+    
+    // If count is 0, set it to 1 (first visitor)
+    if (count === 0) {
+      count = 1;
+      localStorage.setItem("uniqueVisits", "1");
+    }
+    
+    document.getElementById("visits").innerText = count;
+    
+    // Show welcome message
+    setTimeout(() => {
+      toast("🌟 Welcome to our website!");
+    }, 8000);
+    
+	
+	    setTimeout(() => {
+      toast("</> Dev All By ZAKARIA0_DZ");
+    }, 15000);
+	
+    showMessage(count);
+  </script>
 
 
 
