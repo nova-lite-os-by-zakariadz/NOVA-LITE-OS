@@ -964,6 +964,23 @@
     </div>
     
     <script>
+
+const audio = document.getElementById('autoMusic');
+
+// تعيين مستوى الصوت 15%
+audio.volume = 0.15;
+
+// التشغيل التلقائي عند تحميل الصفحة
+window.addEventListener('load', function() {
+    // محاولة التشغيل التلقائي
+    audio.play().catch(() => {
+        // إذا فشل التشغيل التلقائي، سيشتغل عند أول نقرة
+        document.addEventListener('click', function() {
+            audio.play();
+        }, { once: true });
+    });
+});
+
         // Show container on load
         document.addEventListener("DOMContentLoaded", function() {
             setTimeout(function() {
@@ -1014,31 +1031,7 @@
                 }, 50);
             }, 550);
         }
-        
-
-const audio = document.getElementById('autoMusic');
-
-// تعيين مستوى الصوت 15%
-audio.volume = 0.15;
-
-// التشغيل التلقائي عند تحميل الصفحة
-window.addEventListener('load', function() {
-    // محاولة التشغيل التلقائي
-    audio.play().catch(() => {
-        // إذا فشل التشغيل التلقائي، سيشتغل عند أول نقرة
-        document.addEventListener('click', function() {
-            audio.play();
-        }, { once: true });
-    });
-});
-
-
-
-
-
-
-
-
+       
 
         // Download function
         function downloadNOVALite() {
