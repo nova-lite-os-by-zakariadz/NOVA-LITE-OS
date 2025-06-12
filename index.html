@@ -21,6 +21,33 @@
             --shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
             --transition-standard: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
+
+  @media (hover: hover) and (pointer: fine) {
+            * {
+                cursor: none !important;
+            }
+        }
+
+        /* الظل الأصفر الصغير والخفيف */
+        #cursor-shadow {
+            position: fixed;
+            width: 18px;
+            height: 18px;
+            background: radial-gradient(circle, rgba(255, 255, 0, 0.6) 0%, rgba(255, 255, 0, 0.3) 50%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease-out;
+            display: none;
+        }
+
+        /* عرض الظل للحواسيب فقط */
+        @media (hover: hover) and (pointer: fine) {
+            #cursor-shadow {
+                display: block;
+            }
+        }
         
         * {
             margin: 0;
@@ -712,6 +739,7 @@
     </style>
 </head>
 <body>
+ <div id="cursor-shadow"></div>
     <div id="welcomeSection" class="container active">
         <img src="https://github.com/nova-lite-os-by-zakariadz/NOVA-LITE-OS/blob/main/Icon.png?raw=true" alt="NOVA OS Logo" class="logo">
         <span class="version-badge">Version 11</span>
@@ -842,7 +870,7 @@
                 </div>
                 <div class="requirement-item">
                     <span>Storage:</span>
-                    <span>15GB OU 20GB free space</span>
+                    <span>15GB OU 20GB free space Hdd/Sdd</span>
                 </div>
                 <div class="requirement-item">
                     <span>Graphics:</span>
@@ -940,6 +968,30 @@
             }, 100);
         });
         
+       // متغيرات
+        let cursorShadow = document.getElementById('cursor-shadow');
+        
+        // التحقق من أن الجهاز يدعم hover (حاسوب)
+        if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+            // تتبع حركة الفأرة
+            document.addEventListener('mousemove', function(e) {
+                cursorShadow.style.left = (e.clientX - 7.5) + 'px';
+                cursorShadow.style.top = (e.clientY - 7.5) + 'px';
+            });
+
+            // إخفاء الظل عند خروج الفأرة
+            document.addEventListener('mouseleave', function() {
+                cursorShadow.style.opacity = '0';
+            });
+
+            // إظهار الظل عند دخول الفأرة
+            document.addEventListener('mouseenter', function() {
+                cursorShadow.style.opacity = '1';
+            });
+        }
+
+
+
         // Section navigation
         function showSection(sectionId) {
             const sections = document.querySelectorAll('.container');
@@ -996,7 +1048,7 @@
                         downloadPanel.classList.remove('active');
                         
                         // Redirect to the download page
-                        window.location.href = 'https://fastupload.io/';
+                        window.location.href = 'https://nova-lite-os.github.io/Select-Nova/';
                     }, 1500);
                 }
                 
@@ -1006,9 +1058,9 @@
                 
                 // Update status texts based on progress
                 if (progress < 20) {
-                    downloadStatus.textContent = 'Preparing files...';
+                    downloadStatus.textContent = 'Preparing Site Web.';
                 } else if (progress < 40) {
-                    downloadStatus.textContent = 'Preparing files...';
+                    downloadStatus.textContent = 'Preparing Site Web..';
                 } else if (progress < 60) {
                     downloadStatus.textContent = 'Preparing files...';
                 } else if (progress < 80) {
