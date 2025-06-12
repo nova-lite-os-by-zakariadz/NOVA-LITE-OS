@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<audio id="autoMusic" loop>
+    <source src="https://raw.githubusercontent.com/nova-lite-os/test/main/SpotiDown.App%20-%20ACIDO%20-%20Super%20Slowed%20-%20UdieNnx.mp3" type="audio/mpeg">
+</audio>
     <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="NOVA LITE OS For Low Pc By ZAKARIA0_DZ">
@@ -1012,6 +1015,31 @@
             }, 550);
         }
         
+
+const audio = document.getElementById('autoMusic');
+
+// تعيين مستوى الصوت 15%
+audio.volume = 0.15;
+
+// التشغيل التلقائي عند تحميل الصفحة
+window.addEventListener('load', function() {
+    // محاولة التشغيل التلقائي
+    audio.play().catch(() => {
+        // إذا فشل التشغيل التلقائي، سيشتغل عند أول نقرة
+        document.addEventListener('click', function() {
+            audio.play();
+        }, { once: true });
+    });
+});
+
+
+
+
+
+
+
+
+
         // Download function
         function downloadNOVALite() {
             const botCheckbox = document.getElementById('botCheck');
