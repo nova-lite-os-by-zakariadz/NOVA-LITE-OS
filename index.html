@@ -12,6 +12,272 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+
+
+
+
+ #loadingScreen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+    }
+
+    .loading-container {
+      text-align: center;
+      max-width: 500px;
+      padding: 2rem;
+    }
+
+    .logo1 {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 2rem;
+      background: linear-gradient(45deg, #00d4ff, #00ffcc);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      animation: pulse 2s ease-in-out infinite, rotate 3s linear infinite;
+      box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+    }
+
+    .loading-title {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      background: linear-gradient(45deg, #ffffff, #e0e7ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      opacity: 0;
+      animation: slideInUp 1s ease-out 0.3s forwards;
+    }
+
+    .loading-subtitle {
+      font-size: 1.3rem;
+      margin-bottom: 3rem;
+      opacity: 0.9;
+      font-weight: 300;
+      letter-spacing: 0.5px;
+      opacity: 0;
+      animation: slideInUp 1s ease-out 0.6s forwards;
+    }
+
+    .welcome-text {
+      font-size: 1.5rem;
+      font-weight: 500;
+      margin-bottom: 2rem;
+      color: #00ffcc;
+      opacity: 0;
+      animation: slideInUp 1s ease-out 0.9s forwards;
+    }
+
+    #progressContainer {
+      width: 400px;
+      height: 12px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      overflow: hidden;
+      margin: 2rem auto;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      opacity: 0;
+      animation: slideInUp 1s ease-out 1.2s forwards;
+    }
+
+    #progressBar {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #00d4ff, #00ffcc, #7c3aed);
+      border-radius: 20px;
+      transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #progressBar::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      animation: shimmer 2s infinite;
+    }
+
+    #progressText {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-top: 1rem;
+      color: #00ffcc;
+      opacity: 0;
+      animation: slideInUp 1s ease-out 1.5s forwards;
+    }
+
+    .loading-dots {
+      display: inline-block;
+      position: relative;
+      width: 80px;
+      height: 80px;
+      margin: 2rem auto;
+      opacity: 0;
+      animation: slideInUp 1s ease-out 1.8s forwards;
+    }
+
+    .loading-dots div {
+      position: absolute;
+      top: 33px;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: #00ffcc;
+      animation-timing-function: cubic-bezier(0, 1, 1, 0);
+    }
+
+    .loading-dots div:nth-child(1) {
+      left: 8px;
+      animation: dots1 0.6s infinite;
+    }
+
+    .loading-dots div:nth-child(2) {
+      left: 8px;
+      animation: dots2 0.6s infinite;
+    }
+
+    .loading-dots div:nth-child(3) {
+      left: 32px;
+      animation: dots2 0.6s infinite;
+    }
+
+    .loading-dots div:nth-child(4) {
+      left: 56px;
+      animation: dots3 0.6s infinite;
+    }
+
+    .status-text {
+      font-size: 1rem;
+      opacity: 0.8;
+      margin-top: 1rem;
+      font-weight: 300;
+      opacity: 0;
+      animation: slideInUp 1s ease-out 2.1s forwards;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes shimmer {
+      0% { left: -100%; }
+      100% { left: 100%; }
+    }
+
+    @keyframes dots1 {
+      0% { transform: scale(0); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes dots3 {
+      0% { transform: scale(1); }
+      100% { transform: scale(0); }
+    }
+
+    @keyframes dots2 {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(24px, 0); }
+    }
+
+    @keyframes fadeOutScale {
+      0% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+    }
+
+    .fade-out {
+      animation: fadeOutScale 1s ease-in-out forwards;
+    }
+
+    @media (max-width: 480px) {
+      .loading-title {
+        font-size: 2.5rem;
+      }
+      
+      #progressContainer {
+        width: 280px;
+      }
+      
+      .loading-subtitle {
+        font-size: 1.1rem;
+      }
+
+      .loading-container {
+        padding: 1rem;
+      }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         :root {
             --primary-color: #ffcc00;
             --primary-hover: #ff9900;
@@ -774,6 +1040,51 @@ right: 20px;
     </style>
 </head>
 <body>
+
+
+
+
+<div id="loadingScreen">
+  <div class="loading-container">
+    <div class="logo1">🚀</div>
+    
+    <h1 class="loading-title">Loading</h1>
+    <p class="loading-subtitle">Preparing your experience...</p>
+    
+    <div class="welcome-text" id="welcomeText">Welcome!</div>
+    
+    <div id="progressContainer">
+      <div id="progressBar"></div>
+    </div>
+    
+    <div id="progressText">0%</div>
+    
+    <div class="loading-dots">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    
+    <div class="status-text" id="statusText">Initializing...</div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
    <audio id="autoMusic" loop>
         <source src="https://raw.githubusercontent.com/nova-lite-os/test/main/SpotiDown.App%20-%20ACIDO%20-%20Super%20Slowed%20-%20UdieNnx.mp3" type="audio/mpeg">
    </audio>
@@ -1605,7 +1916,77 @@ right: 20px;
 
 
 
+ let progress = 0;
+  const progressBar = document.getElementById('progressBar');
+  const progressText = document.getElementById('progressText');
+  const loadingScreen = document.getElementById('loadingScreen');
+  const statusText = document.getElementById('statusText');
+  const welcomeText = document.getElementById('welcomeText');
 
+  const statusMessages = [
+    'Initializing...',
+    'Loading resources...',
+    'Setting up environment...',
+    'Preparing interface...',
+    'Almost ready...',
+    'Welcome aboard!'
+  ];
+
+  let messageIndex = 0;
+
+  // تغيير رسائل الحالة
+  const statusInterval = setInterval(() => {
+    if (messageIndex < statusMessages.length - 1) {
+      messageIndex++;
+      statusText.style.opacity = '0';
+      setTimeout(() => {
+        statusText.textContent = statusMessages[messageIndex];
+        statusText.style.opacity = '0.8';
+      }, 200);
+    }
+  }, 1500);
+
+  // تشغيل التقدم
+  const progressInterval = setInterval(() => {
+    const increment = Math.random() * 2 + 0.5;
+    progress += increment;
+    
+    if (progress > 100) progress = 100;
+    
+    progressBar.style.width = progress + '%';
+    progressText.textContent = Math.floor(progress) + '%';
+    
+    // تغيير النص الترحيبي حسب التقدم
+    if (progress >= 25 && progress < 50) {
+      welcomeText.textContent = 'Getting Ready...';
+    } else if (progress >= 50 && progress < 75) {
+      welcomeText.textContent = 'Almost There...';
+    } else if (progress >= 75 && progress < 100) {
+      welcomeText.textContent = 'Just a Moment...';
+    } else if (progress >= 100) {
+      welcomeText.textContent = 'Welcome! 🎉';
+    }
+    
+    if (progress >= 100) {
+      clearInterval(progressInterval);
+      clearInterval(statusInterval);
+      
+      statusText.textContent = 'Complete!';
+      
+      setTimeout(() => {
+        loadingScreen.classList.add('fade-out');
+        
+        setTimeout(() => {
+          // إزالة شاشة التحميل وترك الصفحة بيضاء فقط
+          loadingScreen.remove();
+          document.body.style.overflow = 'auto';
+          
+          // إضافة محتوى بسيط للصفحة البيضاء (اختياري)
+
+        }, 1000);
+      }, 800);
+    }
+  }, 80);
 
 
 
