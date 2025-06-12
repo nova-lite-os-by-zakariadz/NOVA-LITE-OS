@@ -1509,36 +1509,6 @@ right: 20px;
             });
         },
 
-        // Disable developer mode detection
-        antiTamper: function() {
-            // Check if page source is being accessed
-            let sourceCheck = setInterval(function() {
-                if (document.documentElement.innerHTML.includes('view-source:')) {
-                    document.documentElement.innerHTML = '';
-                    document.body.innerHTML = '';
-                    clearInterval(sourceCheck);
-                }
-            }, 100);
-            
-            // Protect against script injection
-            const originalCreateElement = document.createElement;
-            document.createElement = function(tagName) {
-                if (tagName.toLowerCase() === 'script') {
-                    return null;
-                }
-                return originalCreateElement.apply(document, arguments);
-            };
-            
-            // Protect against innerHTML modification
-            Object.defineProperty(document.body, 'innerHTML', {
-                set: function(value) {
-                    if (value.includes('<script') || value.includes('javascript:')) {
-                        return;
-                    }
-                },
-                configurable: false
-            });
-        },
 
         // Ultimate stealth mode
         stealthMode: function() {
@@ -1576,8 +1546,7 @@ right: 20px;
                 this.disablePrint();
                 this.disableZoom();
                 this.blockExtensions();
-                 this.antiTamper();
-                 this.stealthMode();
+                this.stealthMode();
                 
                 console.log('%c🔒 Ultimate Protection Activated', 'color: red; font-size: 20px; font-weight: bold;');
                 
