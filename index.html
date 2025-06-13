@@ -1925,8 +1925,9 @@ right: 20px;
             }, true);
         },
 
-        // Advanced developer tools detection
-        detectDevTools: function() {
+       
+	   
+	     detectDevTools: function() {
             let devtools = {open: false};
             
             // Method 1: Screen size detection
@@ -1942,6 +1943,7 @@ right: 20px;
                     }
                 }
             }, 100);
+            
             
             // Method 2: Console detection
             let consoleDetection = setInterval(function() {
@@ -2075,12 +2077,10 @@ right: 20px;
                 this.disableSelection();
                 this.disableConsole();
                 this.hideBrowserTools();
-                this.detectDevTools();
                 this.disablePrint();
                 this.disableZoom();
                 this.blockExtensions();
                 this.stealthMode();
-                
                 console.log('%c🔒 Ultimate Protection Activated', 'color: red; font-size: 20px; font-weight: bold;');
                 
             } catch (error) {
