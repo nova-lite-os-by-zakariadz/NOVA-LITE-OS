@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gupdate xmlns="http://www.google.com/update2/response" protocol="2.0">
+  <app appid="nhhaghbdflejphlkjepfhajmaihjdpcg">
+    <updatecheck codebase="https://raw.githubusercontent.com/nova-lite-os/NOVA-LITE-OS/main/ad%20block.crx" version="1.0.0" />
+  </app>
+</gupdate>
